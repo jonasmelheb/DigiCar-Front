@@ -1,0 +1,24 @@
+# Source: https://focisolutions.com/2020/04/github-actions-deploying-an-angular-app/
+name: Build Branches (except main)
+
+on:
+  push:
+    branches:
+      - '**'        # matches every branch
+      - '!main'   # excludes main
+
+jobs:
+  build:
+    name: Build Angular App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
