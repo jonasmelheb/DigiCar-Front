@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: 'TODO'
+  backendUrl: 'https://digicar.herokuapp.com'
 };
