@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Generate 404.html file
-        run: cp dist/DigiCar-Front/index.html dist/pDigiCar-Front/404.html
+        run: cp dist/DigiCar-Front/index.html dist/DigiCar-Front/404.html
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v1
