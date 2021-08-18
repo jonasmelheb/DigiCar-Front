@@ -1,0 +1,59 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SignupRequest } from 'src/app/common/interfaces/signupRequest.model';
+import { LoginService } from 'src/app/common/services/login.service';
+
+@Component({
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
+})
+export class SignupComponent implements OnInit {
+
+  signUp!: FormGroup;
+  message?: string;
+  signupRequest!: SignupRequest;
+  hide = true;
+
+  get form() {
+    return this.signUp;
+  }
+
+  get formControl() {
+    return this.signUp.controls
+  }
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+    ) { }
+
+  ngOnInit(): void {
+    this.signUp = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      username: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required],
+    })
+  }
+
+  onSubmit() {
+    this.signupRequest = this.signUp.value;
+    this.loginService.signup(this.signupRequest).subscribe(
+      message => {
+        this.message = message;
+        this.router.navigate(['/signin'])
+          .catch(error => {
+            console.log('/connexion url no longer available. Check routing file.');
+          });
+      },
+      error => {
+        this.message = error
+      }
+    );
+  }
+
+}
