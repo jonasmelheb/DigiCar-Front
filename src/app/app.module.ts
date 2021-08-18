@@ -12,6 +12,11 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from 'src/app.routes';
 import { HomeComponent } from './resources/home/home.component';
 import { CookieService } from 'ngx-cookie-service';
+import { CarpoolingComponent } from './resources/carpooling/carpooling.component';
+import { CreateCarpoolingComponent } from './resources/carpooling/create-carpooling/create-carpooling.component';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -19,6 +24,8 @@ import { CookieService } from 'ngx-cookie-service';
     SignupComponent,
     SigninComponent,
     HomeComponent,
+    CarpoolingComponent,
+    CreateCarpoolingComponent,
   ],
   imports: [
     BrowserModule,

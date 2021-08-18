@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { SigninRequest } from 'src/app/common/interfaces/signinRequest.model';
 import { SigninResponse } from 'src/app/common/interfaces/signinResponse.model';
 import { LoginService } from 'src/app/common/services/login.service';
-import {HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-signin',
@@ -32,7 +31,6 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-    private cookieService: CookieService,
   ) { }
 
   ngOnInit(): void {
@@ -40,23 +38,21 @@ export class SigninComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     })
-
-    console.log(this.cookieService.get('auth'))
   }
 
   onSubmit() {
     this.signinRequest = this.signIn.value;
     this.loginService.signIn(this.signinRequest).subscribe(
-        response => {
-          this.signinResponse = response;
-          this.router.navigate(['/home'])
-            .catch(error => {
-              console.log('/connexion url no longer available. Check routing file.');
-            });
-        },
-        error => {
-          this.message = error
-        }
+      response => {
+        this.signinResponse = response;
+        this.router.navigate(['/home'])
+          .catch(error => {
+            console.log('/connexion url no longer available. Check routing file.');
+          });
+      },
+      error => {
+        this.message = error
+      }
     );
   }
 

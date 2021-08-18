@@ -58,16 +58,16 @@ export class LoginService {
   public isLoggedIn() {
     return this.loginStatus.asObservable();
   }
-  //
+
   // private getLogin(): SigninResponse | null {
-  //   const cookie = this.cookieService.get('authentication');
+  //   const cookie = this.cookieService.get('auth');
   //   return cookie && cookie.length !== 0 ? JSON.parse(cookie) as SigninResponse : null;
   // }
 
-  // getToken(): string | null {
-  //   const login = this.getLogin();
-  //   return login ? login.accessToken : null;
-  // }
+  getToken(): string | null {
+    const token = this.cookieService.get('auth');
+    return this.hasToken() ? token : null;
+  }
 
   logout() {
     this.cookieService.delete('auth');
