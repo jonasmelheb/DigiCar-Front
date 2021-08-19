@@ -87,12 +87,6 @@ export class LoginService {
     return this.hasToken() ? token : null;
   }
 
-  isAdmin() {
-    if(this.isLoggedIn()) {
-
-    }
-  }
-
   logout() {
     this.cookieService.delete('auth');
     this.router.navigate(['/signin'])
