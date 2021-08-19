@@ -10,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from 'src/app.routes';
-import { HomeComponent } from './resources/home/home.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CarpoolingComponent } from './resources/carpooling/carpooling.component';
 import { CreateCarpoolingComponent } from './resources/carpooling/create-carpooling/create-carpooling.component';
@@ -18,6 +17,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { DetailCarpoolingComponent } from './resources/carpooling/detail-carpooling/detail-carpooling.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
+import { NavbarComponent } from './partials/navbar/navbar.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -25,10 +25,10 @@ registerLocaleData(localeFr, 'fr');
     AppComponent,
     SignupComponent,
     SigninComponent,
-    HomeComponent,
     CarpoolingComponent,
     CreateCarpoolingComponent,
     DetailCarpoolingComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

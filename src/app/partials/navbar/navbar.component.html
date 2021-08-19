@@ -1,0 +1,49 @@
+<div *ngIf="logIn">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span routerLink="carpooling">DigiCar</span>
+      <span class="example-spacer"></span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <a routerLink="carpooling" mat-button>
+          <mat-icon>booking</mat-icon>
+          Mes Réservations
+        </a>
+        <a routerLink="carpooling" mat-button>
+          <mat-icon>check</mat-icon>
+          Mes covoiturages
+        </a>
+        <a (click)="logOut()" mat-button>
+          <mat-icon>account_box</mat-icon>
+          Se déconnecter
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div *ngIf="!logIn">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span routerLink="carpooling">DigiCar</span>
+      <span class="example-spacer"></span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <a routerLink="signin" mat-button>
+          <mat-icon>login</mat-icon>
+          Se connecter
+        </a>
+        <a routerLink="signup" mat-button>
+          <mat-icon>signup</mat-icon>
+          S'enregistrer
+        </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

@@ -6,7 +6,7 @@
 
 .mat-form-field {
   width: 100%;
-  min-width: 300px;
+  min-width: 400px;
 }
 
 mat-card-title,
@@ -17,7 +17,7 @@ mat-card-content {
 
 .error {
   padding: 16px;
-  width: 300px;
+  width: 400px;
   color: white;
   background-color: red;
 }
@@ -26,3 +26,4 @@ mat-card-content {
   display: flex;
   justify-content: flex-end;
 }
+
