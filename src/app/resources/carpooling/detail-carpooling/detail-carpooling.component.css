@@ -1,0 +1,25 @@
+.detail {
+  display: flex;
+}
+
+.detail > p {
+  margin-left: 5px;
+}
+
+.detail-center {
+  text-align: center;
+}
+
+.close-button{
+  float: right;
+  top:-20px;
+  right:-20px;
+}
+
+.close-icon {
+  transition: 1s ease-in-out;
+}
+
+.close-icon:hover {
+  transform: rotate(180deg);
+}

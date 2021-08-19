@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { SigninRequest } from 'src/app/common/interfaces/signinRequest.model';
 import { SigninResponse } from 'src/app/common/interfaces/signinResponse.model';
 import { LoginService } from 'src/app/common/services/login.service';
@@ -45,7 +44,7 @@ export class SigninComponent implements OnInit {
     this.loginService.signIn(this.signinRequest).subscribe(
       response => {
         this.signinResponse = response;
-        this.router.navigate(['/home'])
+        this.router.navigate(['/carpooling'])
           .catch(error => {
             console.log('/connexion url no longer available. Check routing file.');
           });

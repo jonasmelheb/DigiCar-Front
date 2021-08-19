@@ -16,6 +16,8 @@ import { CarpoolingComponent } from './resources/carpooling/carpooling.component
 import { CreateCarpoolingComponent } from './resources/carpooling/create-carpooling/create-carpooling.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { DetailCarpoolingComponent } from './resources/carpooling/detail-carpooling/detail-carpooling.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -26,6 +28,7 @@ registerLocaleData(localeFr, 'fr');
     HomeComponent,
     CarpoolingComponent,
     CreateCarpoolingComponent,
+    DetailCarpoolingComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [CookieService ],
+  providers: [CookieService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
