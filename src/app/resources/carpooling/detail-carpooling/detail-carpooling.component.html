@@ -1,0 +1,30 @@
+<button mat-icon-button class="close-button" (click)="onClose()">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<ng-container *ngIf="carpooling; else elseBlock">
+  <div class="detail-center">
+    <h1>Détail du covoiturage</h1>
+    <div class="detail">
+      <p>Destination: </p>
+      <p>De <strong>{{ carpooling.addressDeparture }}</strong> à <strong>{{ carpooling.addressArrival }}</strong></p>
+    </div>
+    <div class="detail">
+      <p>Date et heure: </p>
+      <p><strong>{{ carpooling.datetimeDeparture  | date: 'EEEE dd/MM/yy à HH:mm' : '' : 'fr-FR' }} </strong></p>
+    </div>
+    <div class="detail">
+      <p>L'organisateur: </p>
+      <p><strong>{{ carpooling.organize.firstname }}  {{ carpooling.organize.firstname }}</strong></p>
+    </div>
+    <div class="detail">
+      <p>Nombre de passager: </p>
+      <p>{{ carpooling.reserve.firstname }}</p>
+    </div>
+  </div>
+  <button mat-button color="primary">Réserver</button>
+</ng-container>
+<ng-template #elseBlock>
+  <div>
+    {{msgError}}
+  </div>
+</ng-template>

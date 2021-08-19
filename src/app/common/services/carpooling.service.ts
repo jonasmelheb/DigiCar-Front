@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Carpooling} from "../interfaces/carpooling.model";
 import {environment} from "../../../environments/environment";
 import {HeaderHelper} from "../helpers/header.helper";
+import {CarpoolingDetail} from "../interfaces/carpoolingDetail.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class CarpoolingService {
   }
 
   getAllCarpoolings() {
-    return this.http.get<Carpooling[]>(environment.backendUrl + '/carpooling')
+    return this.http.get<CarpoolingDetail[]>(environment.backendUrl + '/carpooling')
+  }
+
+  getCarpoolingById(id: number) {
+    return this.http.get<CarpoolingDetail>(environment.backendUrl + `/carpooling/+${id}`)
   }
 }

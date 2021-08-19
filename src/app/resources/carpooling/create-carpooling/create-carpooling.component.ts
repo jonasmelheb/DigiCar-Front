@@ -41,7 +41,7 @@ export class CreateCarpoolingComponent implements OnInit {
     this.carpooling = this.carpoolingForm.value
     this.service.create(this.carpooling).subscribe(
       carppoling => {
-        this.router.navigate(['/home'])
+        this.router.navigate(['/carpooling'])
           .catch(error => {
             console.log('/connexion url no longer available. Check routing file.');
           });

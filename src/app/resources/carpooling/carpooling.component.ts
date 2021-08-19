@@ -6,6 +6,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 
 import {MatSort} from '@angular/material/sort';
+import {DetailCarpoolingComponent} from "./detail-carpooling/detail-carpooling.component";
 
 @Component({
   selector: 'app-carpooling',
@@ -18,7 +19,6 @@ export class CarpoolingComponent implements AfterViewInit, OnInit {
 
   dataSource = new MatTableDataSource<Carpooling>();
   displayedColumns: string[] = [ 'addressDeparture', 'addressArrival', 'datetimeDeparture' ,'actions'];
-  carpoolings: Carpooling[] = [];
   private message!: string;
 
   constructor(
@@ -39,5 +39,19 @@ export class CarpoolingComponent implements AfterViewInit, OnInit {
       carpoolings => this.dataSource.data = carpoolings,
       error => this.message = error
     )
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialogDetail(id: number) {
+    const dialogRef = this.dialog.open(DetailCarpoolingComponent, {
+      data: {
+        id
+      },
+      width: '700px'
+    })
   }
 }
