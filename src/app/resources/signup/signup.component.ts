@@ -12,9 +12,11 @@ import { LoginService } from 'src/app/common/services/login.service';
 export class SignupComponent implements OnInit {
 
   signUp!: FormGroup;
-  message?: string;
+  messageSuccess?: string;
+  messageError?: string;
   signupRequest!: SignupRequest;
   hide = true;
+  disable = false;
 
   get form() {
     return this.signUp;
@@ -44,14 +46,15 @@ export class SignupComponent implements OnInit {
     this.signupRequest = this.signUp.value;
     this.loginService.signup(this.signupRequest).subscribe(
       message => {
-        this.message = message;
+        this.disable = true;
+        this.messageSuccess = message;
         this.router.navigate(['/signin'])
           .catch(error => {
             console.log('/connexion url no longer available. Check routing file.');
           });
       },
       error => {
-        this.message = error
+        this.messageError = error
       }
     );
   }

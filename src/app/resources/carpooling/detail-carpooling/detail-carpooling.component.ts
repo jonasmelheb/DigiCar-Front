@@ -16,8 +16,8 @@ export class DetailCarpoolingComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DetailCarpoolingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {id: number},
-    private service: CarpoolingService
-  ) {
+    private service: CarpoolingService,
+) {
   }
 
   ngOnInit(): void {
