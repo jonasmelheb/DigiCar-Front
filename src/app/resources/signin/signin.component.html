@@ -6,6 +6,9 @@
         <mat-form-field>
           <mat-label>Pseudo: </mat-label>
           <input type="text" matInput placeholder="Password" formControlName="username">
+          <mat-error *ngIf="formControl.username.hasError('required')">
+            Le pseudo est <strong>requis</strong>
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -13,10 +16,16 @@
           <mat-label>Mot de passe: </mat-label>
           <input matInput [type]="hide ? 'password' : 'text'"  placeholder="Mot de passe" formControlName="password" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="formControl.password.hasError('required')">
+            Le mot de passe est <strong>requis</strong>
+          </mat-error>
         </mat-form-field>
       </p>
+      <mat-error *ngIf="message">
+        {{ message }}
+      </mat-error>
       <div class="button">
-        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">Connecter</button>
+        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" [disabled]="form.invalid || disable">Connecter</button>
       </div>
 
     </form>

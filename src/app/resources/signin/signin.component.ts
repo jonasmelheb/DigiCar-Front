@@ -17,6 +17,7 @@ export class SigninComponent implements OnInit {
   signinRequest!: SigninRequest;
   signinResponse!: SigninResponse;
   hide = true;
+  disable = false;
 
   get form() {
     return this.signIn;
@@ -44,15 +45,21 @@ export class SigninComponent implements OnInit {
     this.loginService.signIn(this.signinRequest).subscribe(
       response => {
         this.signinResponse = response;
-        this.router.navigate(['/carpooling'])
-          .catch(error => {
-            console.log('/connexion url no longer available. Check routing file.');
-          });
+        this.manageLogin();
       },
       error => {
         this.message = error
       }
     );
+  }
+
+  manageLogin() {
+    this.disable = true;
+    if (this.loginService.isLoggedIn()) {
+      this.router.navigateByUrl('/carpooling');
+    } else {
+      this.message = 'Invalid username or password';
+    }
   }
 
 }

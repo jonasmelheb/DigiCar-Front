@@ -1,5 +1,8 @@
 <div class="table">
-  <h1>Liste des Covoiturages</h1>
+  <div>
+    <h1>Liste des Covoiturages</h1>
+    <button mat-button color="primary" routerLink="create">Créer un covoiturage</button>
+  </div>
   <mat-form-field appearance="standard">
     <mat-label>Ville de Départ</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Béziers" #input>

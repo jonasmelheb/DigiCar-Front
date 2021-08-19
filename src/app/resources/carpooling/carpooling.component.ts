@@ -56,6 +56,6 @@ export class CarpoolingComponent implements AfterViewInit, OnInit {
     };
     dialogConfig.width = '700px';
 
-    const dialogRef = this.dialog.open(DetailCarpoolingComponent, dialogConfig)
+    this.dialog.open(DetailCarpoolingComponent, dialogConfig)
   }
 }
