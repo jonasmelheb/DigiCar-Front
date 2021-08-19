@@ -24,10 +24,16 @@ export class CarpoolingService {
   }
 
   getAllCarpoolings() {
-    return this.http.get<CarpoolingDetail[]>(environment.backendUrl + '/carpooling')
+    const headers = this.headerHelper.getHeaders();
+    return this.http.get<CarpoolingDetail[]>(environment.backendUrl + '/carpooling', {
+      headers
+    })
   }
 
   getCarpoolingById(id: number) {
-    return this.http.get<CarpoolingDetail>(environment.backendUrl + `/carpooling/+${id}`)
+    const headers = this.headerHelper.getHeaders();
+    return this.http.get<CarpoolingDetail>(environment.backendUrl + `/carpooling/+${id}`, {
+      headers
+    })
   }
 }
