@@ -18,10 +18,12 @@
     </div>
     <div class="detail">
       <p>Nombre de passager: </p>
-      <p>{{ carpooling.reserve.firstname }}</p>
+      <p>{{ carpooling.reserve.length }}</p>
     </div>
   </div>
-  <button mat-button color="primary" disabled>Réserver</button>
+  <button *ngIf="!myCarpooling && !myReservation" mat-button color="primary" (click)="reserve(carpooling.id)" [disabled]="disable">Réserver</button>
+  <p class="alert" *ngIf="myCarpooling">C'est votre covoiturage</p>
+  <p class="alert" *ngIf="myReservation">Vous etes déjà sur ce covoiturage</p>
 </ng-container>
 <ng-template #elseBlock>
   <div>

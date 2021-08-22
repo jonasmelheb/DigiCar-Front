@@ -23,3 +23,9 @@
 .close-icon:hover {
   transform: rotate(180deg);
 }
+.alert {
+  padding: 10px;
+  background-color: #04AA6D;
+  color: white;
+  border-radius: 5px;
+}

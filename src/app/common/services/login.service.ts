@@ -1,4 +1,4 @@
-import {HttpClient, HttpErrorResponse, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
@@ -8,6 +8,8 @@ import { SigninResponse } from '../interfaces/signinResponse.model';
 import { SignupRequest } from '../interfaces/signupRequest.model';
 import {catchError, tap} from "rxjs/operators";
 import {BehaviorSubject, Observable, throwError} from "rxjs";
+import {User} from "../interfaces/user.model";
+import {HeaderHelper} from "../helpers/header.helper";
 
 
 @Injectable({
@@ -20,7 +22,7 @@ export class LoginService {
   constructor(
     private httpClient: HttpClient,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
   ) { }
 
 
@@ -97,5 +99,15 @@ export class LoginService {
 
   private hasToken() : boolean {
     return this.cookieService.check('auth');
+  }
+
+  getUserAuth() {
+    if (this.hasToken()) {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+      return this.httpClient.get<User>(environment.backendUrl + '/user/user-auth', {
+        headers
+      })
+    }
+    return null;
   }
 }

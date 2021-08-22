@@ -2,6 +2,10 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CarpoolingService} from "../../../common/services/carpooling.service";
 import {CarpoolingDetail} from "../../../common/interfaces/carpoolingDetail.model";
+import {LoginService} from "../../../common/services/login.service";
+import {User} from "../../../common/interfaces/user.model";
+import {ERole} from "../../../common/interfaces/ERole";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-detail-carpooling',
@@ -12,11 +16,16 @@ export class DetailCarpoolingComponent implements OnInit {
 
   carpooling?: CarpoolingDetail;
   msgError?: string;
+  disable = false;
+  myCarpooling = false;
+  myReservation = false;
 
   constructor(
     public dialogRef: MatDialogRef<DetailCarpoolingComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {id: number},
     private service: CarpoolingService,
+    private loginService: LoginService,
+    private router: Router
 ) {
   }
 
@@ -26,12 +35,39 @@ export class DetailCarpoolingComponent implements OnInit {
 
   private refresh() {
     this.service.getCarpoolingById(this.data.id).subscribe(
-      carpooling => this.carpooling = carpooling,
+      carpooling => {
+        this.carpooling = carpooling
+        this.loginService.getUserAuth()?.subscribe(
+          user => {
+            if (user.username === carpooling.organize.username) {
+              this.myCarpooling = true
+            }
+            carpooling.reserve.forEach(userReserve => {
+              if (userReserve.username === user.username) {
+                this.myReservation = true
+              }
+            })
+          }
+        )
+      },
       error => this.msgError = error
     )
   }
 
   onClose() {
     this.dialogRef.close();
+  }
+
+  reserve(id: number) {
+    this.service.reserve(id).subscribe(
+      carpooling => {
+        this.disable = true;
+        this.dialogRef.close()
+        this.router.navigate(['carpooling/reserved-carpooling'])
+          .catch(error => {
+            console.log('/connexion url no longer available. Check routing file.');
+          });
+      }
+    )
   }
 }
