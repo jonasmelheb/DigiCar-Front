@@ -1,7 +1,8 @@
 <div class="table">
   <div>
     <h1>Liste des Covoiturages</h1>
-    <button mat-button color="primary" routerLink="create">Créer un covoiturage</button>
+    <p class="alert" *ngIf="dataSource.data.length === 0">Aucun covoiturage disponible</p>
+    <button mat-raised-button color="primary" routerLink="create">Créer un covoiturage</button>
   </div>
   <mat-form-field appearance="standard">
     <mat-label>Ville de Départ</mat-label>
@@ -37,7 +38,7 @@
     <ng-container cdkColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *cdkCellDef="let row">
-        <button mat-button color="primary" disabled>Réserver</button>
+        <button mat-raised-button color="primary" disabled>Réserver</button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

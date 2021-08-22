@@ -19,6 +19,7 @@ export class DetailCarpoolingComponent implements OnInit {
   disable = false;
   myCarpooling = false;
   myReservation = false;
+  cancelButton = false;
 
   constructor(
     public dialogRef: MatDialogRef<DetailCarpoolingComponent>,
@@ -40,11 +41,12 @@ export class DetailCarpoolingComponent implements OnInit {
         this.loginService.getUserAuth()?.subscribe(
           user => {
             if (user.username === carpooling.organize.username) {
-              this.myCarpooling = true
+              this.myCarpooling = true;
             }
             carpooling.reserve.forEach(userReserve => {
               if (userReserve.username === user.username) {
-                this.myReservation = true
+                this.myReservation = true;
+                this.cancelButton = true;
               }
             })
           }
@@ -64,6 +66,19 @@ export class DetailCarpoolingComponent implements OnInit {
         this.disable = true;
         this.dialogRef.close()
         this.router.navigate(['carpooling/reserved-carpooling'])
+          .catch(error => {
+            console.log('/connexion url no longer available. Check routing file.');
+          });
+      }
+    )
+  }
+
+  cancelReservation(id: number) {
+    this.service.cancel(id).subscribe(
+      carpooling => {
+        this.dialogRef.close()
+        this.carpooling = carpooling;
+        this.router.navigate(['carpooling'])
           .catch(error => {
             console.log('/connexion url no longer available. Check routing file.');
           });

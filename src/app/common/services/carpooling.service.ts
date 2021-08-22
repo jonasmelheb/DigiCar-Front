@@ -46,8 +46,14 @@ export class CarpoolingService {
 
   reserve(id: number) {
     const headers = this.headerHelper.getHeaders();
-    console.log(headers)
     return this.http.put<CarpoolingDetail>(environment.backendUrl + `/carpooling/reserve/${id}`, {} ,{
+      headers
+    })
+  }
+
+  cancel(id: number) {
+    const headers = this.headerHelper.getHeaders();
+    return this.http.put<CarpoolingDetail>(environment.backendUrl + `/carpooling/cancel-carpooling/${id}`, {} ,{
       headers
     })
   }

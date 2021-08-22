@@ -2,7 +2,7 @@
   <div>
     <h1>Liste de mes réservations</h1>
   </div>
-
+<p class="alert" *ngIf="dataSource.data.length === 0">Vous avez aucune réservation</p>
   <mat-form-field appearance="standard">
     <mat-label>Filtrer</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Béziers" #input>
@@ -34,6 +34,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialogDetail(row.id)"></tr>
   </table>
   <!--  <mat-paginator class="footer" [pageSizeOptions]="[7, 10, 20]" [pageSize]="7"></mat-paginator>-->
-
 </div>
+
+
 

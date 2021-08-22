@@ -1,6 +1,8 @@
 <button mat-icon-button class="close-button" (click)="onClose()">
   <mat-icon class="close-icon" color="warn">close</mat-icon>
 </button>
+<p class="alert" *ngIf="myCarpooling">C'est votre covoiturage</p>
+<p class="alert" *ngIf="myReservation">Vous etes déjà sur ce covoiturage</p>
 <ng-container *ngIf="carpooling; else elseBlock">
   <div class="detail-center">
     <h1 mat-dialog-title>Détail du covoiturage</h1>
@@ -21,9 +23,10 @@
       <p>{{ carpooling.reserve.length }}</p>
     </div>
   </div>
-  <button *ngIf="!myCarpooling && !myReservation" mat-button color="primary" (click)="reserve(carpooling.id)" [disabled]="disable">Réserver</button>
-  <p class="alert" *ngIf="myCarpooling">C'est votre covoiturage</p>
-  <p class="alert" *ngIf="myReservation">Vous etes déjà sur ce covoiturage</p>
+  <button *ngIf="!myCarpooling && !myReservation" mat-raised-button color="primary" (click)="reserve(carpooling.id)" [disabled]="disable">Réserver</button>
+  <button *ngIf="cancelButton" mat-raised-button color="warn" (click)="cancelReservation(carpooling.id)">
+    <mat-icon>cancel</mat-icon>
+    Annuler ma réservation</button>
 </ng-container>
 <ng-template #elseBlock>
   <div>
