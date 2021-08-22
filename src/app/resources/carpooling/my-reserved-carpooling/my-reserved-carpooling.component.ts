@@ -4,6 +4,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {CarpoolingDetail} from "../../../common/interfaces/carpoolingDetail.model";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {DetailCarpoolingComponent} from "../detail-carpooling/detail-carpooling.component";
 
 @Component({
   selector: 'app-my-reserved-carpooling',
@@ -20,7 +22,8 @@ export class MyReservedCarpoolingComponent implements AfterViewInit, OnInit {
   private message!: string;
 
   constructor(
-    private service: CarpoolingService
+    private service: CarpoolingService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -38,4 +41,21 @@ export class MyReservedCarpoolingComponent implements AfterViewInit, OnInit {
     );
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialogDetail(id: number) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id
+    };
+    dialogConfig.width = '700px';
+
+    this.dialog.open(DetailCarpoolingComponent, dialogConfig)
+  }
 }

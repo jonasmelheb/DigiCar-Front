@@ -2,6 +2,12 @@
   <div>
     <h1>Liste de mes réservations</h1>
   </div>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Filtrer</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Béziers" #input>
+  </mat-form-field>
+
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="addressDeparture">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Ville de Départ</th>
@@ -25,7 +31,7 @@
           *matCellDef="let element"> {{element.organize.firstname}} {{element.organize.lastname}} </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialogDetail(row.id)"></tr>
   </table>
   <!--  <mat-paginator class="footer" [pageSizeOptions]="[7, 10, 20]" [pageSize]="7"></mat-paginator>-->
 
