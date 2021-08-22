@@ -9,6 +9,9 @@
           <mat-error *ngIf="formControl.username.hasError('required')">
             Le pseudo est <strong>requis</strong>
           </mat-error>
+          <mat-error *ngIf="formControl.username.invalid">
+            Minimum 3 caractères
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -18,6 +21,9 @@
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="formControl.password.hasError('required')">
             Le mot de passe est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.password.invalid">
+            Minimum 3 caractères
           </mat-error>
         </mat-form-field>
       </p>

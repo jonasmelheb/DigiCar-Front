@@ -16,8 +16,10 @@ import { CreateCarpoolingComponent } from './resources/carpooling/create-carpool
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { DetailCarpoolingComponent } from './resources/carpooling/detail-carpooling/detail-carpooling.component';
-import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
+import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
 import { NavbarComponent } from './partials/navbar/navbar.component';
+import { MyReservedCarpoolingComponent } from './resources/carpooling/my-reserved-carpooling/my-reserved-carpooling.component';
+import { MyCreatedCarpoolingComponent } from './resources/carpooling/my-created-carpooling/my-created-carpooling.component';
 import { CarForCarRentalComponent } from './resources/admin/car-for-car-rental/car-for-car-rental.component';
 registerLocaleData(localeFr, 'fr');
 
@@ -30,6 +32,8 @@ registerLocaleData(localeFr, 'fr');
     CreateCarpoolingComponent,
     DetailCarpoolingComponent,
     NavbarComponent,
+    MyReservedCarpoolingComponent,
+    MyCreatedCarpoolingComponent,
     CarForCarRentalComponent
   ],
   imports: [
@@ -40,7 +44,7 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [CookieService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}} ],
+  providers: [CookieService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

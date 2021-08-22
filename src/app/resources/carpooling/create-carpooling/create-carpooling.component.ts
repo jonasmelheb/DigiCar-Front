@@ -32,8 +32,8 @@ export class CreateCarpoolingComponent implements OnInit {
   ngOnInit(): void {
     this.carpoolingForm = this.formBuilder.group({
       datetimeDeparture: ['', Validators.required],
-      addressDeparture: ['', Validators.required],
-      addressArrival: ['', Validators.required]
+      addressDeparture: ['', [Validators.required, Validators.minLength(3)]],
+      addressArrival: ['', [Validators.required, Validators.minLength(3)]]
     })
   }
 
