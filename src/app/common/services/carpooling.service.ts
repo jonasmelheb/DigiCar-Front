@@ -64,4 +64,11 @@ export class CarpoolingService {
       headers
     })
   }
+
+  getCreatedCarpooling() {
+    const headers = this.headerHelper.getHeaders();
+    return this.http.get<CarpoolingDetail[]>(environment.backendUrl + `/carpooling/my-carpooling`, {
+      headers
+    })
+  }
 }

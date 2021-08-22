@@ -22,12 +22,18 @@
       <p>Nombre de passager: </p>
       <p>{{ carpooling.reserve.length }}</p>
     </div>
+    <div *ngIf="myCarpooling">
+      <h3>Liste des passagers: </h3>
+      <ul *ngFor="let reserve of carpooling.reserve">
+        <li><strong>Nom et prénom: </strong> {{reserve.firstname}} - {{reserve.lastname}} <strong>- Email: </strong> {{reserve.email}}</li>
+      </ul>
+    </div>
   </div>
   <button *ngIf="!myCarpooling && !myReservation" mat-raised-button color="primary" (click)="reserve(carpooling.id)" [disabled]="disable">Réserver</button>
   <button *ngIf="cancelButton" mat-raised-button color="warn" (click)="cancelReservation(carpooling.id)">
     <mat-icon>cancel</mat-icon>
     Annuler ma réservation</button>
-  <button *ngIf="deleteButton" mat-raised-button color="warn" (click)="deleteCarpooling(carpooling.id)">
+  <button *ngIf="deleteButton" mat-raised-button color="warn" (click)="deleteCarpooling(carpooling.id)" [disabled]="disable">
     <mat-icon>delete</mat-icon>
     Supprimer mon covoiturage</button>
 </ng-container>

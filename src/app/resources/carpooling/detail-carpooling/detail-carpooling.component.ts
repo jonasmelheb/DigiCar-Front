@@ -76,6 +76,7 @@ export class DetailCarpoolingComponent implements OnInit {
   cancelReservation(id: number) {
     this.service.cancel(id).subscribe(
       carpooling => {
+        this.disable = true;
         this.dialogRef.close()
         this.carpooling = carpooling;
         this.router.navigate(['carpooling'])
@@ -87,7 +88,12 @@ export class DetailCarpoolingComponent implements OnInit {
   }
 
   deleteCarpooling(id: number) {
-    this.service.delete(id).subscribe(
+    this.service.delete(id).pipe(
+      carpooling => {
+        this.disable = true
+        return carpooling;
+      }
+    ).subscribe(
       () => {
         this.dialogRef.close(id)
         this.router.navigate(['carpooling'])

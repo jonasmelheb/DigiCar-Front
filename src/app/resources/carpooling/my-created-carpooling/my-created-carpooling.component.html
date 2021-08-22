@@ -1,13 +1,13 @@
 <div class="table">
   <div>
-    <h1>Liste de mes réservations</h1>
+    <h1>Liste de mes Covoiturages</h1>
   </div>
   <div>
     <button id="return-btn" routerLink="/carpooling" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">
       <mat-icon>home</mat-icon>
       Retour à l'accueil</button>
   </div>
-<p class="alert" *ngIf="dataSource.data.length === 0">Vous avez aucune réservation</p>
+  <p class="alert" *ngIf="dataSource.data.length === 0">Vous avez aucune réservation</p>
   <mat-form-field appearance="standard">
     <mat-label>Filtrer</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Béziers" #input>
@@ -30,10 +30,14 @@
           *matCellDef="let element"> {{element.datetimeDeparture | date: 'EEEE dd/MM/yy à HH:mm' : '' : 'fr-FR' }} </td>
     </ng-container>
 
-    <ng-container matColumnDef="organize">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>L'organisateur</th>
+    <ng-container matColumnDef="reserve">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Liste des réservant</th>
       <td mat-cell
-          *matCellDef="let element"> {{element.organize.firstname}} {{element.organize.lastname}} </td>
+          *matCellDef="let element">
+        <span *ngFor="let reserve of element.reserve">
+          {{reserve.firstname}} -
+        </span>
+      </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialogDetail(row.id)"></tr>

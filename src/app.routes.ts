@@ -6,6 +6,7 @@ import {CarpoolingComponent} from "./app/resources/carpooling/carpooling.compone
 import {CreateCarpoolingComponent} from "./app/resources/carpooling/create-carpooling/create-carpooling.component";
 import {LoginGuard} from "./app/common/guard/login.guard";
 import {MyReservedCarpoolingComponent} from "./app/resources/carpooling/my-reserved-carpooling/my-reserved-carpooling.component";
+import {MyCreatedCarpoolingComponent} from "./app/resources/carpooling/my-created-carpooling/my-created-carpooling.component";
 
 export const ROUTES: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [LoginGuard] },
@@ -14,4 +15,5 @@ export const ROUTES: Routes = [
   { path: 'carpooling/create', component: CreateCarpoolingComponent ,canActivate: [AuthGuard]},
   { path: '', pathMatch: 'full', redirectTo: '/signin' },
   { path: 'carpooling/reserved-carpooling', component: MyReservedCarpoolingComponent ,canActivate: [AuthGuard]},
+  { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent ,canActivate: [AuthGuard]},
 ]

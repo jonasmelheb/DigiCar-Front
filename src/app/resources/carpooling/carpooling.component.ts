@@ -60,7 +60,6 @@ export class CarpoolingComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(DetailCarpoolingComponent, dialogConfig)
 
     dialogRef.afterClosed().subscribe(id => {
-      console.log(id)
       if (id != undefined) {
         this.dataSource.data = this.dataSource.data.filter((carpooling,key)=> carpooling.id !== id);
       }

@@ -1,24 +1,24 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {CarpoolingService} from "../../../common/services/carpooling.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {CarpoolingDetail} from "../../../common/interfaces/carpoolingDetail.model";
+import {CarpoolingService} from "../../../common/services/carpooling.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {DetailCarpoolingComponent} from "../detail-carpooling/detail-carpooling.component";
 
 @Component({
-  selector: 'app-my-reserved-carpooling',
-  templateUrl: './my-reserved-carpooling.component.html',
-  styleUrls: ['./my-reserved-carpooling.component.css']
+  selector: 'app-my-created-carpooling',
+  templateUrl: './my-created-carpooling.component.html',
+  styleUrls: ['./my-created-carpooling.component.css']
 })
-export class MyReservedCarpoolingComponent implements AfterViewInit, OnInit {
+export class MyCreatedCarpoolingComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource = new MatTableDataSource<CarpoolingDetail>();
-  displayedColumns: string[] = [ 'addressDeparture', 'addressArrival', 'datetimeDeparture' ,'organize'];
+  displayedColumns: string[] = [ 'addressDeparture', 'addressArrival', 'datetimeDeparture' ,'reserve'];
   message!: string;
 
   constructor(
@@ -35,7 +35,7 @@ export class MyReservedCarpoolingComponent implements AfterViewInit, OnInit {
   }
 
   refreshList() {
-    this.service.getReservedCarpooling().subscribe(
+    this.service.getCreatedCarpooling().subscribe(
       resCarpooling => this.dataSource.data = resCarpooling,
       error => this.message = error
     );
@@ -58,4 +58,5 @@ export class MyReservedCarpoolingComponent implements AfterViewInit, OnInit {
 
     this.dialog.open(DetailCarpoolingComponent, dialogConfig)
   }
+
 }
