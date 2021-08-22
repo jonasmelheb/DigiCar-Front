@@ -3,8 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CarpoolingService} from "../../../common/services/carpooling.service";
 import {CarpoolingDetail} from "../../../common/interfaces/carpoolingDetail.model";
 import {LoginService} from "../../../common/services/login.service";
-import {User} from "../../../common/interfaces/user.model";
-import {ERole} from "../../../common/interfaces/ERole";
 import {Router} from "@angular/router";
 
 @Component({
@@ -20,6 +18,7 @@ export class DetailCarpoolingComponent implements OnInit {
   myCarpooling = false;
   myReservation = false;
   cancelButton = false;
+  deleteButton = false;
 
   constructor(
     public dialogRef: MatDialogRef<DetailCarpoolingComponent>,
@@ -42,6 +41,7 @@ export class DetailCarpoolingComponent implements OnInit {
           user => {
             if (user.username === carpooling.organize.username) {
               this.myCarpooling = true;
+              this.deleteButton = true;
             }
             carpooling.reserve.forEach(userReserve => {
               if (userReserve.username === user.username) {
@@ -78,6 +78,18 @@ export class DetailCarpoolingComponent implements OnInit {
       carpooling => {
         this.dialogRef.close()
         this.carpooling = carpooling;
+        this.router.navigate(['carpooling'])
+          .catch(error => {
+            console.log('/connexion url no longer available. Check routing file.');
+          });
+      }
+    )
+  }
+
+  deleteCarpooling(id: number) {
+    this.service.delete(id).subscribe(
+      () => {
+        this.dialogRef.close(id)
         this.router.navigate(['carpooling'])
           .catch(error => {
             console.log('/connexion url no longer available. Check routing file.');
