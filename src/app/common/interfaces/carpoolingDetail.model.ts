@@ -6,5 +6,5 @@ export interface CarpoolingDetail {
   addressDeparture: string;
   addressArrival: string;
   organize: User;
-  reserve: User
+  reserve: User[]
 }

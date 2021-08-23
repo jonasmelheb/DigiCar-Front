@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SignupRequest } from 'src/app/common/interfaces/signupRequest.model';
-import { LoginService } from 'src/app/common/services/login.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {SignupRequest} from 'src/app/common/interfaces/signupRequest.model';
+import {LoginService} from 'src/app/common/services/login.service';
 
 @Component({
   selector: 'app-signup',
@@ -30,33 +30,38 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router
-    ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.signUp = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      username: ['', Validators.required],
+      firstname: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.email, Validators.required]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(3)]],
     })
   }
 
   onSubmit() {
     this.signupRequest = this.signUp.value;
-    this.loginService.signup(this.signupRequest).subscribe(
+    this.loginService.signup(this.signupRequest).pipe(
       message => {
         this.disable = true;
-        this.messageSuccess = message;
-        this.router.navigate(['/signin'])
-          .catch(error => {
-            console.log('/connexion url no longer available. Check routing file.');
-          });
-      },
-      error => {
-        this.messageError = error
+        return message;
       }
-    );
+    ).subscribe(
+        message => {
+          this.messageSuccess = message;
+          this.router.navigate(['/signin'])
+            .catch(error => {
+              console.log('/connexion url no longer available. Check routing file.');
+            });
+        },
+        error => {
+          this.messageError = error
+        }
+      );
   }
 
 }

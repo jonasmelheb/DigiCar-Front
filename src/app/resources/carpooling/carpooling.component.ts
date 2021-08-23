@@ -7,6 +7,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 
 import {MatSort} from '@angular/material/sort';
 import {DetailCarpoolingComponent} from "./detail-carpooling/detail-carpooling.component";
+import {CarpoolingDetail} from "../../common/interfaces/carpoolingDetail.model";
 
 @Component({
   selector: 'app-carpooling',
@@ -17,7 +18,7 @@ export class CarpoolingComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  dataSource = new MatTableDataSource<Carpooling>();
+  dataSource = new MatTableDataSource<CarpoolingDetail>();
   displayedColumns: string[] = [ 'addressDeparture', 'addressArrival', 'datetimeDeparture' ,'actions'];
   private message!: string;
 
@@ -56,6 +57,12 @@ export class CarpoolingComponent implements AfterViewInit, OnInit {
     };
     dialogConfig.width = '700px';
 
-    this.dialog.open(DetailCarpoolingComponent, dialogConfig)
+    const dialogRef = this.dialog.open(DetailCarpoolingComponent, dialogConfig)
+
+    dialogRef.afterClosed().subscribe(id => {
+      if (id != undefined) {
+        this.dataSource.data = this.dataSource.data.filter((carpooling,key)=> carpooling.id !== id);
+      }
+    });
   }
 }

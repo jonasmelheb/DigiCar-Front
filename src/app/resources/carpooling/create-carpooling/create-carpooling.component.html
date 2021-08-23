@@ -1,6 +1,8 @@
 <mat-card>
   <div>
-    <button id="return-btn" routerLink="/carpooling" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">Retour à l'accueil</button>
+    <button id="return-btn" routerLink="/carpooling" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">
+      <mat-icon>home</mat-icon>
+      Retour à l'accueil</button>
   </div>
   <mat-card-title>Créer un nouveau covoiturage</mat-card-title>
   <mat-card-content>
@@ -21,14 +23,20 @@
           <mat-error *ngIf="formControl.addressDeparture.hasError('required')">
             Le ville est <strong>requise</strong>
           </mat-error>
+          <mat-error *ngIf="formControl.addressDeparture.invalid">
+            Minimum 3 caractères
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field>
           <mat-label>Ville d'arriver: </mat-label>
           <input type="text" matInput placeholder="Password" formControlName="addressArrival">
-          <mat-error *ngIf="formControl.addressDeparture.hasError('required')">
+          <mat-error *ngIf="formControl.addressArrival.hasError('required')">
             Le ville est <strong>requise</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.addressArrival.invalid">
+            Minimum 3 caractères
           </mat-error>
         </mat-form-field>
       </p>

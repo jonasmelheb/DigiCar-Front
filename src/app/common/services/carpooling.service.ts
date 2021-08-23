@@ -32,7 +32,42 @@ export class CarpoolingService {
 
   getCarpoolingById(id: number) {
     const headers = this.headerHelper.getHeaders();
-    return this.http.get<CarpoolingDetail>(environment.backendUrl + `/carpooling/+${id}`, {
+    return this.http.get<CarpoolingDetail>(environment.backendUrl + `/carpooling/${id}`, {
+      headers
+    })
+  }
+
+  getReservedCarpooling() {
+    const headers = this.headerHelper.getHeaders();
+    return this.http.get<CarpoolingDetail[]>(environment.backendUrl + `/carpooling/carpooling-reserved`, {
+      headers
+    })
+  }
+
+  reserve(id: number) {
+    const headers = this.headerHelper.getHeaders();
+    return this.http.put<CarpoolingDetail>(environment.backendUrl + `/carpooling/reserve/${id}`, {}, {
+      headers
+    })
+  }
+
+  cancel(id: number) {
+    const headers = this.headerHelper.getHeaders();
+    return this.http.put<CarpoolingDetail>(environment.backendUrl + `/carpooling/cancel-carpooling/${id}`, {}, {
+      headers
+    })
+  }
+
+  delete(id: number) {
+    const headers = this.headerHelper.getHeaders();
+    return this.http.delete<void>(environment.backendUrl + `/carpooling/my-carpooling/${id}`, {
+      headers
+    })
+  }
+
+  getCreatedCarpooling() {
+    const headers = this.headerHelper.getHeaders();
+    return this.http.get<CarpoolingDetail[]>(environment.backendUrl + `/carpooling/my-carpooling`, {
       headers
     })
   }

@@ -1,4 +1,4 @@
-import { Role } from "./Role";
+import {ERole} from "./ERole";
 
 export interface SigninResponse {
   "id": number;
@@ -6,7 +6,7 @@ export interface SigninResponse {
   "lastname": string;
   "username": string;
   "email": string;
-  "roles": Role;
+  "roles": ERole;
   "accessToken": string;
   "tokenType": string;
 }
