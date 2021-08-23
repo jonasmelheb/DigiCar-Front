@@ -19,6 +19,7 @@ import { DetailCarpoolingComponent } from './resources/carpooling/detail-carpool
 import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { CarForCarRentalComponent } from './resources/admin/car-for-car-rental/car-for-car-rental.component';
+import { DetailCarForCarrentalComponent } from './resources/admin/car-for-car-rental/detail-car-for-carrental/detail-car-for-carrental.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -30,7 +31,8 @@ registerLocaleData(localeFr, 'fr');
     CreateCarpoolingComponent,
     DetailCarpoolingComponent,
     NavbarComponent,
-    CarForCarRentalComponent
+    CarForCarRentalComponent,
+    DetailCarForCarrentalComponent
   ],
   imports: [
     BrowserModule,
