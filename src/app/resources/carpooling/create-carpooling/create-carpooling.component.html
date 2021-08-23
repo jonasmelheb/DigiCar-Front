@@ -9,7 +9,7 @@
     <form [formGroup]="carpoolingForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field>
-          <mat-label>La Date de départ: </mat-label>
+          <mat-label>La date et l'heure de départ: </mat-label>
           <input type="datetime-local" matInput formControlName="datetimeDeparture">
           <mat-error *ngIf="formControl.datetimeDeparture.hasError('required')">
             Le date est <strong>requise</strong>
@@ -23,7 +23,7 @@
       <p>
         <mat-form-field>
           <mat-label>Ville de départ : </mat-label>
-          <input type="text" matInput placeholder="Password" formControlName="addressDeparture">
+          <input type="text" matInput placeholder="Ex. Béziers" formControlName="addressDeparture">
           <mat-error *ngIf="formControl.addressDeparture.hasError('required')">
             Le ville est <strong>requise</strong>
           </mat-error>
@@ -35,7 +35,7 @@
       <p>
         <mat-form-field>
           <mat-label>Ville d'arriver: </mat-label>
-          <input type="text" matInput placeholder="Password" formControlName="addressArrival">
+          <input type="text" matInput placeholder="Ex. Montpellier" formControlName="addressArrival">
           <mat-error *ngIf="formControl.addressArrival.hasError('required')">
             Le ville est <strong>requise</strong>
           </mat-error>
