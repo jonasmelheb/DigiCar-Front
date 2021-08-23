@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CarpoolingService} from "../../../common/services/carpooling.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {Carpooling} from "../../../common/interfaces/carpooling.model";
 import {Router} from "@angular/router";
 
@@ -31,10 +31,20 @@ export class CreateCarpoolingComponent implements OnInit {
 
   ngOnInit(): void {
     this.carpoolingForm = this.formBuilder.group({
-      datetimeDeparture: ['', Validators.required],
+      datetimeDeparture: ['', [Validators.required, this.dateLessThan]],
       addressDeparture: ['', [Validators.required, Validators.minLength(3)]],
-      addressArrival: ['', [Validators.required, Validators.minLength(3)]]
+      addressArrival: ['', [Validators.required, Validators.minLength(3)]],
     })
+  }
+
+  dateLessThan(control: FormControl): ValidationErrors | null{
+    let f = control.value;
+    if (f < new Date().toISOString()) {
+      return {
+        dates: "La date doit être antérieure à la date d'aujourd'hui"
+      };
+    }
+    return null;
   }
 
   onSubmit() {
