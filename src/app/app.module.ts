@@ -18,6 +18,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { DetailCarpoolingComponent } from './resources/carpooling/detail-carpooling/detail-carpooling.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
+import { CarrentalComponent } from './resources/carrental/carrental.component';
+import { ViewCarrentalIdComponent } from './resources/carrental/view-carrental-id/view-carrental-id.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -29,6 +31,8 @@ registerLocaleData(localeFr, 'fr');
     CarpoolingComponent,
     CreateCarpoolingComponent,
     DetailCarpoolingComponent,
+    CarrentalComponent,
+    ViewCarrentalIdComponent,
   ],
   imports: [
     BrowserModule,

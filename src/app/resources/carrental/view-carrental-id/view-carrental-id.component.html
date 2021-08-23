@@ -1,0 +1,28 @@
+<!-- {{carrental| json}} -->
+<ng-container *ngIf="carrental; else elseBlock">
+  <mat-card>
+    <h1>Réservation de véhicule numéro {{carrental.id}}</h1>
+<div>
+  <h3>Date de début</h3>
+  <p>{{carrental.dateDepart | date: 'EEEE dd/MM/yy à HH:mm' : '' : 'fr-FR' }}</p>
+</div>
+<div>
+  <h3>Date de fin</h3>
+  <p>{{carrental.dateArrivee | date: 'EEEE dd/MM/yy à HH:mm' : '' : 'fr-FR' }}</p>
+</div>
+<ng-container *ngIf="carrental.driver; else elseBlock">
+<div>
+  <h3>Driver</h3>
+  <p>{{carrental.driver}}</p>
+</div>
+</ng-container>
+<button mat-raised-button color="primary" (click)="updateCarrental()">Modifier</button>
+<button mat-raised-button color="warn" (click)="deleteCarrental()">Supprimer</button>
+</mat-card>
+ </ng-container>
+ <ng-template #elseBlock>
+   <div>
+     {{msgError}}
+   </div>
+ </ng-template>
+

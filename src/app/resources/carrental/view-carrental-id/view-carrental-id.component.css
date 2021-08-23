@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+
+h1,h3,p{
+  text-align: center;
+
+}
+
+h1{
+  color: #2b3db6;
+}
+
+.mat-raised-button{
+  display: table-cell;
+  width: 200px;
+  margin: 10px;
+}
+

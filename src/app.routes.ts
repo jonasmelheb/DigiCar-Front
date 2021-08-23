@@ -5,10 +5,12 @@ import { SignupComponent } from "./app/resources/signup/signup.component";
 import {AuthGuard} from "./app/common/guard/auth.guard";
 import {CarpoolingComponent} from "./app/resources/carpooling/carpooling.component";
 import {CreateCarpoolingComponent} from "./app/resources/carpooling/create-carpooling/create-carpooling.component";
+import { ViewCarrentalIdComponent} from "./app/resources/carrental/view-carrental-id/view-carrental-id.component";
 
 export const ROUTES: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'carrental/:id', component: ViewCarrentalIdComponent/* ,canActivate: [AuthGuard] */},
   { path: 'home', component: HomeComponent ,canActivate: [AuthGuard]},
   { path: 'carpooling', component: CarpoolingComponent ,canActivate: [AuthGuard]},
   { path: 'carpooling/create', component: CreateCarpoolingComponent ,canActivate: [AuthGuard]},
