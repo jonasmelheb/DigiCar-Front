@@ -10,14 +10,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from 'src/app.routes';
-import { HomeComponent } from './resources/home/home.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CarpoolingComponent } from './resources/carpooling/carpooling.component';
 import { CreateCarpoolingComponent } from './resources/carpooling/create-carpooling/create-carpooling.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { DetailCarpoolingComponent } from './resources/carpooling/detail-carpooling/detail-carpooling.component';
-import {MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
+import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material/dialog";
+import { NavbarComponent } from './partials/navbar/navbar.component';
+import { MyReservedCarpoolingComponent } from './resources/carpooling/my-reserved-carpooling/my-reserved-carpooling.component';
+import { MyCreatedCarpoolingComponent } from './resources/carpooling/my-created-carpooling/my-created-carpooling.component';
+import { CarForCarRentalComponent } from './resources/admin/car-for-car-rental/car-for-car-rental.component';
 import { CarrentalComponent } from './resources/carrental/carrental.component';
 import { ViewCarrentalIdComponent } from './resources/carrental/view-carrental-id/view-carrental-id.component';
 registerLocaleData(localeFr, 'fr');
@@ -27,12 +30,15 @@ registerLocaleData(localeFr, 'fr');
     AppComponent,
     SignupComponent,
     SigninComponent,
-    HomeComponent,
     CarpoolingComponent,
     CreateCarpoolingComponent,
     DetailCarpoolingComponent,
     CarrentalComponent,
     ViewCarrentalIdComponent,
+    NavbarComponent,
+    MyReservedCarpoolingComponent,
+    MyCreatedCarpoolingComponent,
+    CarForCarRentalComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,7 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [CookieService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}} ],
+  providers: [CookieService, { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

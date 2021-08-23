@@ -15,10 +15,3 @@ table {
   font-size: 14px;
   margin: 8px;
 }
-.alert {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: red;
-  color: white;
-  border-radius: 5px;
-}

@@ -9,24 +9,45 @@
           <mat-error *ngIf="formControl.firstname.hasError('required')">
             Le nom est <strong>requis</strong>
           </mat-error>
+          <mat-error *ngIf="formControl.firstname.invalid">
+            Minimum 3 caractères
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field>
           <mat-label>Prénom: </mat-label>
           <input type="text" matInput placeholder="Prénom" formControlName="lastname">
+          <mat-error *ngIf="formControl.lastname.hasError('required')">
+            Le prénom est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.lastname.invalid">
+            Minimum 3 caractères
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field>
           <mat-label>Pseudo: </mat-label>
           <input type="text" matInput placeholder="Pseudo" formControlName="username">
+          <mat-error *ngIf="formControl.username.hasError('required')">
+            Le pseudo est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.username.invalid">
+            Minimum 3 caractères
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field>
           <mat-label>email: </mat-label>
           <input type="email" matInput placeholder="Adresse mail" formControlName="email">
+          <mat-error *ngIf="formControl.email.hasError('required')">
+            Le email est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.email.hasError('email')">
+            Entrez un mail valide
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -34,11 +55,20 @@
           <mat-label>Mot de passe: </mat-label>
           <input matInput [type]="hide ? 'password' : 'text'"  placeholder="Mot de passe" formControlName="password" required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="formControl.password.hasError('required')">
+            Le mot de passe est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.password.invalid">
+            Minimum 3 caractères
+          </mat-error>
 <!--          <mat-hint *ngIf="!formControl.password.value">Écrierez votre mdp</mat-hint>-->
         </mat-form-field>
       </p>
+      <mat-error *ngIf="messageError">
+        {{ messageError }}
+      </mat-error>
       <div class="button">
-        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">S'enregistrer</button>
+        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" [disabled]="disable || form.invalid">S'enregistrer</button>
       </div>
     </form>
   </mat-card-content>
