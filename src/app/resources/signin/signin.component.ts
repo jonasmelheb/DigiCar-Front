@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SigninRequest } from 'src/app/common/interfaces/signinRequest.model';
-import { SigninResponse } from 'src/app/common/interfaces/signinResponse.model';
-import { LoginService } from 'src/app/common/services/login.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {SigninRequest} from 'src/app/common/interfaces/signinRequest.model';
+import {SigninResponse} from 'src/app/common/interfaces/signinResponse.model';
+import {LoginService} from 'src/app/common/services/login.service';
 
 @Component({
   selector: 'app-signin',
@@ -31,7 +31,8 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.signIn = this.formBuilder.group({
@@ -42,19 +43,24 @@ export class SigninComponent implements OnInit {
 
   onSubmit() {
     this.signinRequest = this.signIn.value;
-    this.loginService.signIn(this.signinRequest).subscribe(
-      response => {
-        this.signinResponse = response;
-        this.manageLogin();
-      },
-      error => {
-        this.message = error
-      }
-    );
+    this.loginService.signIn(this.signinRequest).pipe(
+        response => {
+          this.disable = true;
+          return response;
+        }
+      )
+      .subscribe(
+        response => {
+          this.signinResponse = response;
+          this.manageLogin();
+        },
+        error => {
+          this.message = error
+        }
+      );
   }
 
   manageLogin() {
-    this.disable = true;
     if (this.loginService.isLoggedIn()) {
       this.router.navigateByUrl('/carpooling');
     } else {
