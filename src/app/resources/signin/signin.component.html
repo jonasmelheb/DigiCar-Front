@@ -9,7 +9,7 @@
           <mat-error *ngIf="formControl.username.hasError('required')">
             Le pseudo est <strong>requis</strong>
           </mat-error>
-          <mat-error *ngIf="formControl.username.invalid">
+          <mat-error *ngIf="formControl.username.hasError('minlength')">
             Minimum 3 caractères
           </mat-error>
         </mat-form-field>
@@ -22,7 +22,7 @@
           <mat-error *ngIf="formControl.password.hasError('required')">
             Le mot de passe est <strong>requis</strong>
           </mat-error>
-          <mat-error *ngIf="formControl.password.invalid">
+          <mat-error *ngIf="formControl.password.hasError('minlength')">
             Minimum 6 caractères
           </mat-error>
         </mat-form-field>
