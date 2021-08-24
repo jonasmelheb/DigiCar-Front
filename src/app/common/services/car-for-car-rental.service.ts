@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { HeaderHelper } from '../helpers/header.helper';
 import { CarForCarRental } from '../interfaces/carForCarRental.model';
+import { CarForCarRentalDetails } from '../interfaces/carForCarRentalDetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +11,30 @@ import { CarForCarRental } from '../interfaces/carForCarRental.model';
 export class CarForCarRentalService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private headerHelper: HeaderHelper
   ) { }
 
-  getCarForCarRental() {
-    return this.httpClient.get<CarForCarRental[]>(environment.backendUrl + '/car/cars-for-carrental');
+  create(carForCarRental: CarForCarRental) {
+    const headers = this.headerHelper.getHeaders();
+    return this.httpClient.post<CarForCarRental>(environment.backendUrl + '/car/add-car/admin', carForCarRental, {
+      headers
+    })
   }
+
+  getCarForCarRental() {
+    const headers = this.headerHelper.getHeaders();
+    return this.httpClient.get<CarForCarRental[]>(environment.backendUrl + '/car/cars-for-carrental', {
+      headers
+    });
+  }
+
+  getCarForCarRentalById(id: number){
+    const headers = this.headerHelper.getHeaders();
+    return this.httpClient.get<CarForCarRentalDetails>(environment.backendUrl + `/car/admin/${id}`, {
+      headers
+    })
+  }
+
+
 }
