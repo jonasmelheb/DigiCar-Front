@@ -8,6 +8,7 @@ import { LoginGuard } from "./app/common/guard/login.guard";
 import { MyReservedCarpoolingComponent } from "./app/resources/carpooling/my-reserved-carpooling/my-reserved-carpooling.component";
 import { MyCreatedCarpoolingComponent } from "./app/resources/carpooling/my-created-carpooling/my-created-carpooling.component";
 import { CarForCarRentalComponent } from "./app/resources/admin/car-for-car-rental/car-for-car-rental.component";
+import { CreateCarForCarrentalComponent } from "./app/resources/admin/car-for-car-rental/create-car-for-carrental/create-car-for-carrental.component";
 
 export const ROUTES: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [LoginGuard] },
@@ -18,4 +19,5 @@ export const ROUTES: Routes = [
   { path: 'carpooling/reserved-carpooling', component: MyReservedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AuthGuard] },
+  { path: 'car-for-carrental/add', component: CreateCarForCarrentalComponent, canActivate: [AuthGuard] },
 ]
