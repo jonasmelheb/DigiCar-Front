@@ -1,4 +1,4 @@
-import { Category } from "./category.model";
+import { ECategory } from "./Ecategory";
 import { User } from "./user.model";
 
 export interface CarForCarRental {
@@ -9,7 +9,7 @@ export interface CarForCarRental {
   registration: string;
   image: string;
   status: string;
-  category: Category;
+  category: ECategory;
   user: User;
   carService: boolean;
 }
