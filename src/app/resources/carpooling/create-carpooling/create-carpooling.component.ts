@@ -54,7 +54,7 @@ export class CreateCarpoolingComponent implements OnInit {
     let f = control.value;
     if (f < new Date().toISOString()) {
       return {
-        dates: "La date doit être antérieure à la date d'aujourd'hui"
+        dates: "La date ne doit pas être antérieure à la date d'aujourd'hui"
       };
     }
     return null;
