@@ -56,6 +56,12 @@ export class CarForCarRentalComponent implements AfterViewInit, OnInit {
     };
     dialogConfig.width = '700px';
 
-    this.dialog.open(DetailCarForCarrentalComponent, dialogConfig)
+    const dialogRef = this.dialog.open(DetailCarForCarrentalComponent, dialogConfig)
+
+    dialogRef.afterClosed().subscribe(id => {
+      if (id != undefined) {
+        this.dataSource.data = this.dataSource.data.filter((carForCarRental, key)=> carForCarRental.id !== id);
+      }
+    });
   }
 }
