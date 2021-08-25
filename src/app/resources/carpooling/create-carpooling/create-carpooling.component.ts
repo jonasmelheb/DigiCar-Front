@@ -54,7 +54,7 @@ export class CreateCarpoolingComponent implements OnInit {
     let f = control.value;
     if (f < new Date().toISOString()) {
       return {
-        dates: "La date doit être antérieure à la date d'aujourd'hui"
+        dates: "La date ne doit pas être antérieure à la date d'aujourd'hui"
       };
     }
     return null;
@@ -72,7 +72,7 @@ export class CreateCarpoolingComponent implements OnInit {
   }
 
   editCarpooling() {
-    this.service.updateCarpooling(this.id, this.carpoolingForm.value).subscribe(carppoling => {
+    this.service.updateCarpooling(this.id, this.carpoolingForm.value).subscribe(carpooling => {
       this.router.navigate(['/carpooling'])
         .catch(error => {
           console.log('/connexion url no longer available. Check routing file.');
