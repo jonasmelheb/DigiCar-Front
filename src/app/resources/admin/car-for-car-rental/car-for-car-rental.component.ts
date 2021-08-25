@@ -60,7 +60,7 @@ export class CarForCarRentalComponent implements AfterViewInit, OnInit {
 
     dialogRef.afterClosed().subscribe(id => {
       if (id != undefined) {
-        this.dataSource.data = this.dataSource.data.filter((carpooling,key)=> carpooling.id !== id);
+        this.dataSource.data = this.dataSource.data.filter((carForCarRental, key)=> carForCarRental.id !== id);
       }
     });
   }
