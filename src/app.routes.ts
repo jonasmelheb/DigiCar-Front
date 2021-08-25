@@ -15,6 +15,7 @@ export const ROUTES: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   { path: 'carpooling', component: CarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/create', component: CreateCarpoolingComponent, canActivate: [AuthGuard] },
+  { path: 'carpooling/create/:id', component: CreateCarpoolingComponent, canActivate: [AuthGuard] },
   { path: '', pathMatch: 'full', redirectTo: '/signin' },
   { path: 'carpooling/reserved-carpooling', component: MyReservedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent, canActivate: [AuthGuard] },

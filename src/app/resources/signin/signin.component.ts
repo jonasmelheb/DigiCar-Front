@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
     this.signIn = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(3)]]
+      password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 
@@ -55,6 +55,7 @@ export class SigninComponent implements OnInit {
           this.manageLogin();
         },
         error => {
+          this.disable = false;
           this.message = error
         }
       );

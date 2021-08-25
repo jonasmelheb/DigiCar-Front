@@ -20,12 +20,14 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn() {
     this.loginService.isLoggedIn().subscribe(
-      boolean => this.logIn = boolean
+      isLogin => this.logIn = isLogin
     )
   }
 
   logOut() {
-    this.logIn = false;
     this.loginService.logout()
+    if (this.logIn) {
+      this.logIn = false;
+    }
   }
 }
