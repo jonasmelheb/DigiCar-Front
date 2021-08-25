@@ -1,4 +1,4 @@
-import { Car } from './../interfaces/car.model';
+
 import { CarRentalRequest } from './../interfaces/carRentalRequest.model';
 import { CarRental } from './../interfaces/carRental.model';
 import { environment } from './../../../environments/environment';
@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {HeaderHelper} from "../helpers/header.helper";
+
 
 
 @Injectable({
@@ -22,9 +23,19 @@ export class CarRentalService {
     return this.http.get<CarRental[]>(environment.backendUrl + '/car-rental')
   }
 
-  getCarRentalWhereCollaborateurIsReserve(): Observable<CarRental[]> {
-    return this.http.get<CarRental[]>(environment.backendUrl + '/car-rental/carrental-reserved')
-  }
+  // getCarRentalWhereCollaborateurIsReserve(userId:number){
+  //   const headers = this.headerHelper.getHeaders();
+  //    return this.http.get<CarRental>(environment.backendUrl + `/car-rental/${userId}`,{
+  //    headers
+  //    })
+  //   }
+  
+  getCarRentalWhereCollaborateurIsReserve(){
+  const headers = this.headerHelper.getHeaders();
+  return this.http.get<CarRental[]>(environment.backendUrl + `/car-rental/carrental-reserved/`, {
+    headers
+  })
+}
 
   create(carRental: CarRentalRequest, carId: number) {
     const headers = this.headerHelper.getHeaders();

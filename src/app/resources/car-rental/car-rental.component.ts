@@ -6,8 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { CarRental } from './../../common/interfaces/carRental.model';
 import { CarRentalService } from './../../common/services/carRental.service';
-import { CarForCarRentalService } from './../../common/services/car-for-car-rental.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
+import { User } from 'src/app/common/interfaces/user.model';
 
 @Component({
   selector: 'app-car-rental',
@@ -19,9 +19,10 @@ export class CarRentalComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   carRentals?: CarRental[] = [];
   carForCarRental?: CarForCarRental[] = [];
+  user?:User;
 
   dataSource = new MatTableDataSource<CarRental>();
-  displayedColumns: string[] = [ 'dateDepart', 'dateArrivee', 'usedCar'];
+  displayedColumns: string[] = [ 'dateDepart', 'dateArrivee', 'usedCar', 'actions'];
   private message!: string;
 
   constructor(
@@ -47,25 +48,14 @@ export class CarRentalComponent implements OnInit {
 
   viewListCarRentalReserved() {
     this.service.getCarRentalWhereCollaborateurIsReserve().subscribe(
-      carRentalsReserved => this.dataSource.data = carRentalsReserved,
-      error => this.message = error
-    )
-  }
+             reservedCarRental => this.dataSource.data = reservedCarRental,
+        error => this.message = error
+      );
+    }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  openDialogDetail(id: number) {
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = {
-      id
-    };
-    dialogConfig.width = '700px';
-
   }
 }
