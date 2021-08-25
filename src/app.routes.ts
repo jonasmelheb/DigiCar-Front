@@ -21,4 +21,5 @@ export const ROUTES: Routes = [
   { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AuthGuard] },
   { path: 'car-for-carrental/add', component: CreateCarForCarrentalComponent, canActivate: [AuthGuard] },
+  { path: 'car-for-carrental/add/:id', component: CreateCarForCarrentalComponent, canActivate: [AuthGuard] },
 ]
