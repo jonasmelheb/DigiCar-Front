@@ -9,6 +9,7 @@ import { MyReservedCarpoolingComponent } from "./app/resources/carpooling/my-res
 import { MyCreatedCarpoolingComponent } from "./app/resources/carpooling/my-created-carpooling/my-created-carpooling.component";
 import { CarForCarRentalComponent } from "./app/resources/admin/car-for-car-rental/car-for-car-rental.component";
 import { CreateCarForCarrentalComponent } from "./app/resources/admin/car-for-car-rental/create-car-for-carrental/create-car-for-carrental.component";
+import {AdminGuard} from "./app/common/guard/admin.guard";
 
 export const ROUTES: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [LoginGuard] },
@@ -19,6 +20,6 @@ export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/signin' },
   { path: 'carpooling/reserved-carpooling', component: MyReservedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent, canActivate: [AuthGuard] },
-  { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AuthGuard] },
-  { path: 'car-for-carrental/add', component: CreateCarForCarrentalComponent, canActivate: [AuthGuard] },
+  { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AdminGuard] },
+  { path: 'car-for-carrental/add', component: CreateCarForCarrentalComponent, canActivate: [AdminGuard] },
 ]

@@ -9,7 +9,6 @@ import { SignupRequest } from '../interfaces/signupRequest.model';
 import {catchError, tap} from "rxjs/operators";
 import {BehaviorSubject, throwError} from "rxjs";
 import {User} from "../interfaces/user.model";
-import {ERole} from "../interfaces/ERole";
 
 
 @Injectable({
@@ -18,7 +17,6 @@ import {ERole} from "../interfaces/ERole";
 export class LoginService {
 
   loginStatus = new BehaviorSubject<boolean>(this.hasToken());
-  user!: User;
 
   constructor(
     private httpClient: HttpClient,
