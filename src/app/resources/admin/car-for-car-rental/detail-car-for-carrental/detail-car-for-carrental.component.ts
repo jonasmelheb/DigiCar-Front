@@ -37,6 +37,23 @@ export class DetailCarForCarrentalComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  deleteCarForCarRental(id: number) {
+    this.service.delete(id).pipe(
+      carForCarRental => {
+        this.disable = true
+        return carForCarRental;
+      }
+    ).subscribe(
+      () => {
+        this.dialogRef.close(id)
+        this.router.navigate(['car-for-carrental'])
+          .catch(error => {
+            console.log('/connexion url no longer available. Check routing file.');
+          });
+      }
+    )
+  }
+
   editCarForCarRental(id: number) {
     this.dialogRef.close();
     if (id !== null) {
