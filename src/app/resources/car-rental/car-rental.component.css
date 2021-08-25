@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+}
+
+.table {
+  width: 800px;
+}
+
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+.mat-form-field {
+  font-size: 14px;
+  margin: 8px;
+}
+
+.alert {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}

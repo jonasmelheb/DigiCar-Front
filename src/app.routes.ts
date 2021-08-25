@@ -1,3 +1,5 @@
+import { CreateCarrentalComponent } from './app/resources/car-rental/create-carrental/create-carrental.component';
+import { CarRentalComponent } from './app/resources/car-rental/car-rental.component';
 import { Routes } from "@angular/router";
 import { SigninComponent } from "./app/resources/signin/signin.component";
 import { SignupComponent } from "./app/resources/signup/signup.component";
@@ -16,6 +18,10 @@ export const ROUTES: Routes = [
   { path: 'carpooling', component: CarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/create', component: CreateCarpoolingComponent, canActivate: [AuthGuard] },
   { path: '', pathMatch: 'full', redirectTo: '/signin' },
+  { path: 'car-for-carrental', component: CarForCarRentalComponent ,canActivate: [AuthGuard]},
+  { path: 'car-rental', component: CarRentalComponent ,canActivate: [AuthGuard]},
+  { path: 'car-rental/reserve', component: CreateCarrentalComponent ,canActivate: [AuthGuard]},
+  { path: 'car-rental/carrental-reserved', component: CarRentalComponent ,canActivate: [AuthGuard]},
   { path: 'carpooling/reserved-carpooling', component: MyReservedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AuthGuard] },

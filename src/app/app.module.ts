@@ -1,3 +1,5 @@
+import { CreateCarrentalComponent } from './resources/car-rental/create-carrental/create-carrental.component';
+import { CarRentalComponent } from './resources/car-rental/car-rental.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -35,6 +37,8 @@ registerLocaleData(localeFr, 'fr');
     DetailCarpoolingComponent,
     NavbarComponent,
     CarForCarRentalComponent,
+    CarRentalComponent,
+    CreateCarrentalComponent,
     DetailCarForCarrentalComponent,
     MyReservedCarpoolingComponent,
     MyCreatedCarpoolingComponent,
