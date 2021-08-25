@@ -103,4 +103,11 @@ export class DetailCarpoolingComponent implements OnInit {
       }
     )
   }
+
+  editCarpooling(id: number) {
+    this.dialogRef.close();
+    if (id !== null) {
+      this.router.navigateByUrl(`carpooling/create/${id}`)
+    }
+  }
 }

@@ -4,7 +4,8 @@
       <mat-icon>home</mat-icon>
       Retour à l'accueil</button>
   </div>
-  <mat-card-title>Créer un nouveau covoiturage</mat-card-title>
+  <mat-card-title *ngIf="isAddMode">Créer un nouveau covoiturage</mat-card-title>
+  <mat-card-title *ngIf="!isAddMode">Modifier mon covoiturage</mat-card-title>
   <mat-card-content>
     <form [formGroup]="carpoolingForm" (ngSubmit)="onSubmit()">
       <p>
@@ -44,8 +45,11 @@
           </mat-error>
         </mat-form-field>
       </p>
-      <div class="button">
+      <div class="button" *ngIf="isAddMode">
         <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" [disabled]="form.invalid">Créer</button>
+      </div>
+      <div class="button" *ngIf="!isAddMode">
+        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" [disabled]="form.invalid">Modifier</button>
       </div>
     </form>
   </mat-card-content>
