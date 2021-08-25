@@ -10,19 +10,19 @@
   <h3>Date de fin</h3>
   <p>{{carrental.dateArrivee | date: 'EEEE dd/MM/yy à HH:mm' : '' : 'fr-FR' }}</p>
 </div>
-<ng-container *ngIf="carrental.driver; else elseBlock">
+<ng-container *ngIf="carrental.driver ; else elseBlock">
 <div>
   <h3>Driver</h3>
-  <p>{{carrental.driver}}</p>
+  <p>{{carrental.driver.firstname}}</p>
 </div>
 </ng-container>
-<button mat-raised-button color="primary" (click)="updateCarrental()">Modifier</button>
-<button mat-raised-button color="warn" (click)="deleteCarrental()">Supprimer</button>
+<button mat-raised-button color="primary" (click)="updateCarrental(carrental.id)">Modifier</button>
+<button mat-raised-button color="warn" (click)="deleteCarrental(carrental.id)">Supprimer</button>
 </mat-card>
  </ng-container>
  <ng-template #elseBlock>
    <div>
-     {{msgError}}
+     {{msgError | json}}
    </div>
  </ng-template>
 

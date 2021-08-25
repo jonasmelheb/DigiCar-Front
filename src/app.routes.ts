@@ -1,4 +1,4 @@
-import { ViewCarrentalIdComponent } from './app/resources/carrental/view-carrental-id/view-carrental-id.component';
+import { ViewCarrentalIdComponent } from './app/resources/car-rental/view-carrental-id/view-carrental-id.component';
 import { Routes } from "@angular/router";
 import { SigninComponent } from "./app/resources/signin/signin.component";
 import { SignupComponent } from "./app/resources/signup/signup.component";

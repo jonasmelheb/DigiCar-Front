@@ -27,23 +27,37 @@ export class ViewCarrentalIdComponent implements OnInit {
 
 
   ngOnInit(): void {
-      this.refreshList()
+    this.getCarrental()
   }
 
-  refreshList() {
+  getCarrental() {
     this.service.getById(1).subscribe(
       carrental => this.carrental = carrental,
       error => this.msgError = error
     )
   }
 
-  updateCarrental(){
+  updateCarrental(id: number){
     console.log("modifier");
+    this.service.updateById(1).subscribe(
+      () => {
+
+        this.router.navigate(['/carpooling'])
+      },
+      error => this.msgError = error
+    )
 
   }
-  deleteCarrental(){
-    console.log("supprimer");
 
+  deleteCarrental(id: number){
+    console.log("supprimer");
+    this.service.deleteById(id).subscribe(
+      () => {
+
+        this.router.navigate(['/carpooling'])
+      },
+      error => this.msgError = error
+    )
   }
 
 
