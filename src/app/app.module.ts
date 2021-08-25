@@ -25,6 +25,7 @@ import { MyCreatedCarpoolingComponent } from './resources/carpooling/my-created-
 import { CarForCarRentalComponent } from './resources/admin/car-for-car-rental/car-for-car-rental.component';
 import { DetailCarForCarrentalComponent } from './resources/admin/car-for-car-rental/detail-car-for-carrental/detail-car-for-carrental.component';
 import { CreateCarForCarrentalComponent } from './resources/admin/car-for-car-rental/create-car-for-carrental/create-car-for-carrental.component';
+import { ViewCarrentalIdComponent } from './resources/car-rental/view-carrental-id/view-carrental-id.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -35,6 +36,7 @@ registerLocaleData(localeFr, 'fr');
     CarpoolingComponent,
     CreateCarpoolingComponent,
     DetailCarpoolingComponent,
+    ViewCarrentalIdComponent,
     NavbarComponent,
     CarForCarRentalComponent,
     CarRentalComponent,

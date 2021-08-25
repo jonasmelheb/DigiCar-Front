@@ -1,8 +1,8 @@
-import { CarRental } from './carRental.model';
+import { Carrental } from './carrental.model';
 import { User } from './user.model';
 
 export interface Driver extends User {
   licenceDriverNumber: string;
   image: string;
-  listCarRental: CarRental[]
+  listCarRental: Carrental[]
 }
