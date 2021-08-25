@@ -1,4 +1,4 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {CookieService} from 'ngx-cookie-service';
@@ -7,9 +7,9 @@ import { SigninRequest } from '../interfaces/signinRequest.model';
 import { SigninResponse } from '../interfaces/signinResponse.model';
 import { SignupRequest } from '../interfaces/signupRequest.model';
 import {catchError, tap} from "rxjs/operators";
-import {BehaviorSubject, Observable, throwError} from "rxjs";
+import {BehaviorSubject, throwError} from "rxjs";
 import {User} from "../interfaces/user.model";
-import {HeaderHelper} from "../helpers/header.helper";
+import {ERole} from "../interfaces/ERole";
 
 
 @Injectable({
@@ -18,6 +18,7 @@ import {HeaderHelper} from "../helpers/header.helper";
 export class LoginService {
 
   loginStatus = new BehaviorSubject<boolean>(this.hasToken());
+  user!: User;
 
   constructor(
     private httpClient: HttpClient,
