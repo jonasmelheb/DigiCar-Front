@@ -1,0 +1,104 @@
+<mat-card>
+  <div>
+    <button id="return-btn" routerLink="/car-for-carrental" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">
+      <mat-icon>home</mat-icon>
+      Retour à l'accueil</button>
+  </div>
+  <mat-card-title>Ajouter un véhicule de service</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="carForCarRentalForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field>
+          <mat-label>Marque : </mat-label>
+          <input type="text" matInput formControlName="mark">
+          <mat-error *ngIf="formControl.mark.hasError('required')">
+            La marque est <strong>requise</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.mark.invalid">
+            Minimum 3 caractères
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Modèle : </mat-label>
+          <input type="text" matInput placeholder="Modèle" formControlName="model">
+          <mat-error *ngIf="formControl.model.hasError('required')">
+            Le modèle est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.model.invalid">
+            Minimum 3 caractères
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Nombre de place : </mat-label>
+          <input type="number" matInput placeholder="nombre de place" formControlName="placeNumber">
+          <mat-error *ngIf="formControl.placeNumber.hasError('required')">
+            Le nombre de place est <strong>requis</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.registration.invalid">
+            Maximum 7
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Immatriculation : </mat-label>
+          <input type="text" matInput placeholder="Immatriculation" formControlName="registration">
+          <mat-error *ngIf="formControl.registration.hasError('required')">
+            L'immatriculation est <strong>requise</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.registration.invalid">
+            Minimum 7 caractères
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>Image : </mat-label>
+          <input type="text" matInput placeholder="Image" formControlName="image">
+          <mat-error *ngIf="formControl.image.hasError('required')">
+            L'image est <strong>requise</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.image.invalid">
+            Minimum 6 caractères
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="en service">En service</mat-option>
+            <mat-option value="hors service">Hors service</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Categorie</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let cat of category" [value]="cat.name">
+              {{cat.name | lowercase}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Vehicule de service?</mat-label>
+          <mat-select formControlName="carService" [(ngModel)]="isCarService">
+            <mat-option [value]="true">Oui</mat-option>
+            <mat-option [value]="false">Non</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <div class="button">
+        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" [disabled]="form.invalid">Créer</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+

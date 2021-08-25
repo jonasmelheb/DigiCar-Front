@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CarForCarRental } from 'src/app/common/interfaces/carForCarRental.model';
 import { CarForCarRentalService } from 'src/app/common/services/car-for-car-rental.service';
+import { DetailCarForCarrentalComponent } from './detail-car-for-carrental/detail-car-for-carrental.component';
 
 
 @Component({
@@ -45,4 +46,16 @@ export class CarForCarRentalComponent implements AfterViewInit, OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  openDialogDetail(id: number) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      id
+    };
+    dialogConfig.width = '700px';
+
+    this.dialog.open(DetailCarForCarrentalComponent, dialogConfig)
+  }
 }
