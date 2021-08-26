@@ -5,19 +5,19 @@
     <button mat-raised-button color="primary" routerLink="create">Créer un covoiturage</button>
   </div>
   <mat-form-field appearance="standard">
-    <mat-label>Ville de Départ</mat-label>
+    <mat-label>Filtrer</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Béziers" #input>
   </mat-form-field>
-  <mat-form-field appearance="standard">
-    <mat-label>Ville d'arrivée</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Montpellier" #input>
-  </mat-form-field>
-  <mat-form-field appearance="standard">
-    <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker" (keyup)="applyFilter($event)" #input>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+<!--  <mat-form-field appearance="standard">-->
+<!--    <mat-label>Ville d'arrivée</mat-label>-->
+<!--    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Montpellier" #input>-->
+<!--  </mat-form-field>-->
+<!--  <mat-form-field appearance="standard">-->
+<!--    <mat-label>Choose a date</mat-label>-->
+<!--    <input matInput [matDatepicker]="picker" (keyup)="applyFilter($event)" #input>-->
+<!--    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--    <mat-datepicker #picker></mat-datepicker>-->
+<!--  </mat-form-field>-->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="addressDeparture">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Ville de Départ</th>

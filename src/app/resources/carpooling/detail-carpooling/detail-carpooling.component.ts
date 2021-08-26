@@ -4,6 +4,7 @@ import {CarpoolingService} from "../../../common/services/carpooling.service";
 import {CarpoolingDetail} from "../../../common/interfaces/carpoolingDetail.model";
 import {LoginService} from "../../../common/services/login.service";
 import {Router} from "@angular/router";
+import {ERole} from "../../../common/interfaces/ERole";
 
 @Component({
   selector: 'app-detail-carpooling',
@@ -19,6 +20,7 @@ export class DetailCarpoolingComponent implements OnInit {
   myReservation = false;
   cancelButton = false;
   deleteButton = false;
+  isAdmin!: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<DetailCarpoolingComponent>,
@@ -43,12 +45,16 @@ export class DetailCarpoolingComponent implements OnInit {
               this.myCarpooling = true;
               this.deleteButton = true;
             }
+
+            user.roles.map(role => this.isAdmin = role.name === ERole.ROLE_ADMIN)
+
             carpooling.reserve.forEach(userReserve => {
               if (userReserve.username === user.username) {
                 this.myReservation = true;
                 this.cancelButton = true;
               }
             })
+
           }
         )
       },
@@ -102,5 +108,12 @@ export class DetailCarpoolingComponent implements OnInit {
           });
       }
     )
+  }
+
+  editCarpooling(id: number) {
+    this.dialogRef.close();
+    if (id !== null) {
+      this.router.navigateByUrl(`carpooling/create/${id}`)
+    }
   }
 }

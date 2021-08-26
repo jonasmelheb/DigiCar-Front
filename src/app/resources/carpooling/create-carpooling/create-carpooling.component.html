@@ -4,22 +4,27 @@
       <mat-icon>home</mat-icon>
       Retour à l'accueil</button>
   </div>
-  <mat-card-title>Créer un nouveau covoiturage</mat-card-title>
+  <mat-card-title *ngIf="isAddMode">Créer un nouveau covoiturage</mat-card-title>
+  <mat-card-title *ngIf="!isAddMode">Modifier mon covoiturage</mat-card-title>
   <mat-card-content>
     <form [formGroup]="carpoolingForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field>
-          <mat-label>La Date de départ: </mat-label>
+          <mat-label>La date et l'heure de départ: </mat-label>
           <input type="datetime-local" matInput formControlName="datetimeDeparture">
           <mat-error *ngIf="formControl.datetimeDeparture.hasError('required')">
             Le date est <strong>requise</strong>
           </mat-error>
+          <mat-error *ngIf="formControl.datetimeDeparture.errors?.dates !== null">
+            La date doit être antérieure à la date d'aujourd'hui
+          </mat-error>
         </mat-form-field>
+
       </p>
       <p>
         <mat-form-field>
           <mat-label>Ville de départ : </mat-label>
-          <input type="text" matInput placeholder="Password" formControlName="addressDeparture">
+          <input type="text" matInput placeholder="Ex. Béziers" formControlName="addressDeparture">
           <mat-error *ngIf="formControl.addressDeparture.hasError('required')">
             Le ville est <strong>requise</strong>
           </mat-error>
@@ -31,7 +36,7 @@
       <p>
         <mat-form-field>
           <mat-label>Ville d'arriver: </mat-label>
-          <input type="text" matInput placeholder="Password" formControlName="addressArrival">
+          <input type="text" matInput placeholder="Ex. Montpellier" formControlName="addressArrival">
           <mat-error *ngIf="formControl.addressArrival.hasError('required')">
             Le ville est <strong>requise</strong>
           </mat-error>
@@ -40,8 +45,11 @@
           </mat-error>
         </mat-form-field>
       </p>
-      <div class="button">
+      <div class="button" *ngIf="isAddMode">
         <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" [disabled]="form.invalid">Créer</button>
+      </div>
+      <div class="button" *ngIf="!isAddMode">
+        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" [disabled]="form.invalid">Modifier</button>
       </div>
     </form>
   </mat-card-content>

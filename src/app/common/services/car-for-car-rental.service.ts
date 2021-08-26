@@ -36,5 +36,18 @@ export class CarForCarRentalService {
     })
   }
 
+  delete(id: number) {
+    const headers = this.headerHelper.getHeaders();
+    return this.httpClient.delete<void>(environment.backendUrl + `/car/delete-car/${id}`, {
+      headers
+    })
+  }
+
+  updateCarForCarRental(id: number, carForCarRental: CarForCarRental) {
+    const headers = this.headerHelper.getHeaders();
+    return this.httpClient.put<CarForCarRental>(environment.backendUrl + `/car/update/${id}`, carForCarRental, {
+      headers
+    })
+  }
 
 }

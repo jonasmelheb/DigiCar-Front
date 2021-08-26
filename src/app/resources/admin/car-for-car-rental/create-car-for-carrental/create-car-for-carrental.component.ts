@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarForCarRental } from 'src/app/common/interfaces/carForCarRental.model';
 import { Category } from 'src/app/common/interfaces/category.model';
 import { ECategory } from 'src/app/common/interfaces/Ecategory';
 import { CarForCarRentalService } from 'src/app/common/services/car-for-car-rental.service';
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-create-car-for-carrental',
@@ -26,11 +27,14 @@ export class CreateCarForCarrentalComponent implements OnInit {
     {name: ECategory.SUV_TT_PICKUP},
   ];
   isCarService = false;
+  id!: number;
+  isAddMode?: boolean;
 
   constructor(
     private service: CarForCarRentalService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   get form() {
@@ -42,6 +46,9 @@ export class CreateCarForCarrentalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.isAddMode = !this.id;
+
     this.carForCarRentalForm = this.formBuilder.group({
       mark: ['', [Validators.required, Validators.minLength(3)]],
       model: ['', Validators.required],
@@ -52,9 +59,15 @@ export class CreateCarForCarrentalComponent implements OnInit {
       category: ['', Validators.required],
       carService: ['', Validators.required],
     })
+
+    if (!this.isAddMode) {
+      this.service.getCarForCarRentalById(this.id)
+        .pipe(first())
+        .subscribe(car => this.form.patchValue(car));
+    }
   }
 
-  onSubmit() {
+  createCarForCarRental(){
     this.carForCarRental = this.carForCarRentalForm.value
     this.service.create(this.carForCarRental).subscribe(
       carForCarRental => {
@@ -63,6 +76,23 @@ export class CreateCarForCarrentalComponent implements OnInit {
             console.log('/connexion url no longer available. Check routing file.');
           });
       })
+  }
+
+  editCarForCarRental() {
+    this.service.updateCarForCarRental(this.id, this.carForCarRentalForm.value).subscribe(carForCarRental => {
+      this.router.navigate(['/car-for-carrental'])
+        .catch(error => {
+          console.log('/connexion url no longer available. Check routing file.');
+        });
+    })
+  }
+
+  onSubmit() {
+    if (this.isAddMode) {
+    this.createCarForCarRental();
+    } else {
+      this.editCarForCarRental();
+    }
   }
 
 }

@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       lastname: ['', [Validators.required, Validators.minLength(3)]],
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
 
@@ -59,6 +59,7 @@ export class SignupComponent implements OnInit {
             });
         },
         error => {
+          this.disable = false;
           this.messageError = error
         }
       );

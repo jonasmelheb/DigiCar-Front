@@ -9,8 +9,8 @@
       <p><strong>{{ carForCarRental.id }}</strong></p>
     </div>
   </div>
-  <button mat-button color="primary" disabled>Modifier</button>
-  <button mat-button color="primary" disabled>Supprimer</button>
+  <button mat-button color="primary" (click)="editCarForCarRental(carForCarRental.id)" [disabled]="disable">Modifier</button>
+  <button mat-button color="primary" (click)="deleteCarForCarRental(carForCarRental.id)" [disabled]="disable">Supprimer</button>
 </ng-container>
 <ng-template #elseBlock>
   <div>
