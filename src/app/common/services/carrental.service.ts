@@ -40,7 +40,10 @@ export class CarrentalService {
   }
 
   getAllCarRentals() {
-    return this.httpClient.get<Carrental[]>(environment.backendUrl + '/car-rental')
+    const headers = this.headerHelper.getHeaders();
+    return this.httpClient.get<Carrental[]>(environment.backendUrl + '/car-rental', {
+      headers
+    })
   }
 
   getCarRentalWhereCollaborateurIsReserve(){

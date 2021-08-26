@@ -22,7 +22,6 @@ export const ROUTES: Routes = [
   { path: 'car-for-carrental', component: CarForCarRentalComponent ,canActivate: [AuthGuard]},
   { path: 'car-rental', component: CarRentalComponent ,canActivate: [AuthGuard]},
   { path: 'car-rental/reserve', component: CreateCarrentalComponent ,canActivate: [AuthGuard]},
-  { path: 'car-rental/carrental-reserved', component: CarRentalComponent ,canActivate: [AuthGuard]},
   { path: 'carpooling/reserved-carpooling', component: MyReservedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AuthGuard] },

@@ -45,12 +45,12 @@ export class CarRentalComponent implements OnInit {
     )
   }
 
-  viewListCarRentalReserved() {
+ /*  viewListCarRentalReserved() {
     this.service.getCarRentalWhereCollaborateurIsReserve().subscribe(
              reservedCarRental => this.dataSource.data = reservedCarRental,
         error => this.message = error
       );
-    }
+    } */
 
 
   applyFilter(event: Event) {
