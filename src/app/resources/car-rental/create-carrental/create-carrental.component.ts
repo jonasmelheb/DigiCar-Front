@@ -1,8 +1,8 @@
+import { CarrentalService } from './../../../common/services/carrental.service';
 import { CarRentalRequest } from './../../../common/interfaces/carRentalRequest.model';
 import { CarForCarRentalService } from './../../../common/services/car-for-car-rental.service';
 import { CarForCarRental } from './../../../common/interfaces/carForCarRental.model';
 import { Router } from '@angular/router';
-import { CarRentalService } from './../../../common/services/carRental.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
@@ -21,7 +21,7 @@ export class CreateCarrentalComponent implements OnInit {
   carId!: number;
 
   constructor(
-    private service: CarRentalService,
+    private service: CarrentalService,
     private formBuilder: FormBuilder,
     private router: Router,
     private serviceCarForCarRental: CarForCarRentalService,

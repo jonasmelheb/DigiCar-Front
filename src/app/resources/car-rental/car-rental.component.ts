@@ -1,11 +1,10 @@
-import { MatDialogConfig } from '@angular/material/dialog';
+import { CarrentalService } from './../../common/services/carrental.service';
+import { Carrental } from './../../common/interfaces/carrental.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { CarForCarRental } from 'src/app/common/interfaces/carForCarRental.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { CarRental } from './../../common/interfaces/carRental.model';
-import { CarRentalService } from './../../common/services/carRental.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { User } from 'src/app/common/interfaces/user.model';
 
@@ -17,16 +16,16 @@ import { User } from 'src/app/common/interfaces/user.model';
 export class CarRentalComponent implements OnInit {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  carRentals?: CarRental[] = [];
+  carRentals?: Carrental[] = [];
   carForCarRental?: CarForCarRental[] = [];
   user?:User;
 
-  dataSource = new MatTableDataSource<CarRental>();
+  dataSource = new MatTableDataSource<Carrental>();
   displayedColumns: string[] = [ 'dateDepart', 'dateArrivee', 'usedCar', 'actions'];
   private message!: string;
 
   constructor(
-    private service: CarRentalService,
+    private service: CarrentalService,
     public dialog: MatDialog
   ) { }
 

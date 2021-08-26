@@ -10,6 +10,4 @@ export interface Carrental {
   driver: Driver;
   collaborateur: User;
   usedCar: CarForCarRental;
-
-
 }

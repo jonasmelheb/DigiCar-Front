@@ -1,6 +1,6 @@
+import { CarrentalService } from './../../../common/services/carrental.service';
 import { Component, OnInit } from '@angular/core';
-import { CarrentalService } from "../../../common/services/carrental.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Carrental} from "../../../common/interfaces/carrental.model"
 import { MatTableDataSource } from "@angular/material/table";
 import { MatDialog } from "@angular/material/dialog";
@@ -18,20 +18,23 @@ export class ViewCarrentalIdComponent implements OnInit {
 
   dataSource = new MatTableDataSource<Carrental>();
   displayedColumns: string[] = ['dateDepart', 'dateArrivee', 'driver','modifier','supprimer'];
-  private message!: string;
+  message!: string;
+  id!: number;
 
-
-
-  constructor(private service: CarrentalService, private router: Router, public dialog: MatDialog) { }
-
-
+  constructor(
+    private service: CarrentalService,
+    private router: Router,
+    public dialog: MatDialog,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.getCarrental()
   }
 
   getCarrental() {
-    this.service.getById(1).subscribe(
+    this.id = this.route.snapshot.params['id']
+    this.service.getById(this.id).subscribe(
       carrental => this.carrental = carrental,
       error => this.msgError = error
     )
@@ -42,7 +45,7 @@ export class ViewCarrentalIdComponent implements OnInit {
     this.service.updateById(1).subscribe(
       () => {
 
-        this.router.navigate(['/carpooling'])
+        this.router.navigate(['/car-rental'])
       },
       error => this.msgError = error
     )
@@ -54,7 +57,7 @@ export class ViewCarrentalIdComponent implements OnInit {
     this.service.deleteById(id).subscribe(
       () => {
 
-        this.router.navigate(['/carpooling'])
+        this.router.navigate(['/car-rental'])
       },
       error => this.msgError = error
     )
