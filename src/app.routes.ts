@@ -12,19 +12,18 @@ import { MyReservedCarpoolingComponent } from "./app/resources/carpooling/my-res
 import { MyCreatedCarpoolingComponent } from "./app/resources/carpooling/my-created-carpooling/my-created-carpooling.component";
 import { CarForCarRentalComponent } from "./app/resources/admin/car-for-car-rental/car-for-car-rental.component";
 import { CreateCarForCarrentalComponent } from "./app/resources/admin/car-for-car-rental/create-car-for-carrental/create-car-for-carrental.component";
+import {AdminGuard} from "./app/common/guard/admin.guard";
 
 export const ROUTES: Routes = [
   { path: 'signin', component: SigninComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   { path: 'carpooling', component: CarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/create', component: CreateCarpoolingComponent, canActivate: [AuthGuard] },
-  { path: '', pathMatch: 'full', redirectTo: '/signin' },
-  { path: 'car-for-carrental', component: CarForCarRentalComponent ,canActivate: [AuthGuard]},
-  { path: 'car-rental', component: CarRentalComponent ,canActivate: [AuthGuard]},
-  { path: 'car-rental/reserve', component: CreateCarrentalComponent ,canActivate: [AuthGuard]},
+  { path: 'carpooling/create/:id', component: CreateCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/reserved-carpooling', component: MyReservedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent, canActivate: [AuthGuard] },
-  { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AuthGuard] },
-  { path: 'car-for-carrental/add', component: CreateCarForCarrentalComponent, canActivate: [AuthGuard] },
-  { path: 'carrental/:id', component: ViewCarrentalIdComponent, canActivate: [AuthGuard] },
+  { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AdminGuard] },
+  { path: 'car-for-carrental/add', component: CreateCarForCarrentalComponent, canActivate: [AdminGuard] },
+  { path: 'car-for-carrental/add/:id', component: CreateCarForCarrentalComponent, canActivate: [AdminGuard] },
+  { path: '', pathMatch: 'full', redirectTo: '/signin' },
 ]

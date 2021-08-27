@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../../common/services/login.service";
+import {ERole} from "../../common/interfaces/ERole";
+import {User} from "../../common/interfaces/user.model";
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +11,8 @@ import {LoginService} from "../../common/services/login.service";
 export class NavbarComponent implements OnInit {
 
   logIn = false;
+  isAdmin!: boolean;
+  user!: User;
 
   constructor(
     private loginService: LoginService
@@ -20,12 +24,21 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn() {
     this.loginService.isLoggedIn().subscribe(
-      boolean => this.logIn = boolean
+      isLogin => {
+        this.logIn = isLogin;
+        this.loginService.getUserAuth()?.subscribe(
+          user => {
+            this.user = user;
+            user.roles.map(role => this.isAdmin = role.name === ERole.ROLE_ADMIN)
+          })
+      }
     )
   }
 
   logOut() {
-    this.logIn = false;
     this.loginService.logout()
+    if (this.logIn) {
+      this.logIn = false;
+    }
   }
 }

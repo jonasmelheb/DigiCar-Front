@@ -29,10 +29,13 @@
       </ul>
     </div>
   </div>
-  <button *ngIf="!myCarpooling && !myReservation" mat-raised-button color="primary" (click)="reserve(carpooling.id)" [disabled]="disable">Réserver</button>
+  <button *ngIf="!myCarpooling && !myReservation && !isAdmin" mat-raised-button color="primary" (click)="reserve(carpooling.id)" [disabled]="disable">Réserver</button>
   <button *ngIf="cancelButton" mat-raised-button color="warn" (click)="cancelReservation(carpooling.id)">
     <mat-icon>cancel</mat-icon>
     Annuler ma réservation</button>
+  <button *ngIf="deleteButton" mat-raised-button color="accent" (click)="editCarpooling(carpooling.id)" [disabled]="disable">
+    <mat-icon>edit</mat-icon>
+    Modifier mon covoiturage </button>
   <button *ngIf="deleteButton" mat-raised-button color="warn" (click)="deleteCarpooling(carpooling.id)" [disabled]="disable">
     <mat-icon>delete</mat-icon>
     Supprimer mon covoiturage</button>
