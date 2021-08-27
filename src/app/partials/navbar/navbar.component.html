@@ -1,6 +1,3 @@
-
-
-
 <div style="height: 100vh;">
   <div *ngIf="logIn && !isAdmin">
     <mat-toolbar color="primary">
@@ -24,8 +21,16 @@
             <mat-icon>check</mat-icon>
             Mes covoiturages
           </a>
-          <a (click)="logOut()" mat-button>
+          <a routerLink="car-rental" mat-button>
+            <mat-icon>departure_board</mat-icon>
+            Locations des véhicules de service
+          </a>
+          <a *ngIf="user" mat-button>
             <mat-icon>account_box</mat-icon>
+            {{ user.username | uppercase }}
+          </a>
+          <a (click)="logOut()" mat-button>
+            <mat-icon>logout</mat-icon>
             Se déconnecter
           </a>
         </div>
@@ -58,8 +63,12 @@
             <mat-icon>check</mat-icon>
             Les covoiturages
           </a>
-          <a (click)="logOut()" mat-button>
+          <a *ngIf="user" mat-button>
             <mat-icon>account_box</mat-icon>
+            {{ user.username | uppercase }}
+          </a>
+          <a (click)="logOut()" mat-button>
+            <mat-icon>logout</mat-icon>
             Se déconnecter
           </a>
         </div>
@@ -82,7 +91,7 @@
             Se connecter
           </a>
           <a routerLink="signup" mat-button>
-            <mat-icon>signup</mat-icon>
+            <mat-icon>login</mat-icon>
             S'enregistrer
           </a>
         </div>
@@ -106,8 +115,16 @@
             <mat-icon>check</mat-icon>
             Mes covoiturages
           </a>
-          <a (click)="logOut(); sidenav.close()" mat-button>
+          <a routerLink="car-rental" mat-list-item (click)="sidenav.toggle()">
+            <mat-icon>departure_board</mat-icon>
+            Locations des véhicules de service
+          </a>
+          <a *ngIf="user" mat-list-item>
             <mat-icon>account_box</mat-icon>
+            {{ user.username | uppercase }}
+          </a>
+          <a (click)="logOut(); sidenav.close()" mat-button>
+            <mat-icon>logout</mat-icon>
             Se déconnecter
           </a>
         </div>
@@ -130,8 +147,12 @@
             <mat-icon>check</mat-icon>
             Les covoiturages
           </a>
-          <a (click)="logOut(); sidenav.close()" mat-list-item>
+          <a *ngIf="user" mat-list-item>
             <mat-icon>account_box</mat-icon>
+            {{ user.username | uppercase }}
+          </a>
+          <a (click)="logOut(); sidenav.close()" mat-list-item>
+            <mat-icon>logout</mat-icon>
             Se déconnecter
           </a>
         </div>
@@ -143,7 +164,7 @@
             Se connecter
           </a>
           <a routerLink="signup" mat-list-item (click)="sidenav.toggle()">
-            <mat-icon>signup</mat-icon>
+            <mat-icon>login</mat-icon>
             S'enregistrer
           </a>
         </div>
@@ -154,5 +175,4 @@
     </mat-sidenav>
     <router-outlet></router-outlet>
   </mat-sidenav-container>
-
 </div>

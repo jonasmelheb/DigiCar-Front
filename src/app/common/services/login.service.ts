@@ -1,13 +1,13 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { SigninRequest } from '../interfaces/signinRequest.model';
 import { SigninResponse } from '../interfaces/signinResponse.model';
 import { SignupRequest } from '../interfaces/signupRequest.model';
-import {catchError, tap} from "rxjs/operators";
-import {BehaviorSubject, Observable, throwError} from "rxjs";
-import {User} from "../interfaces/user.model";
+import { catchError, tap } from "rxjs/operators";
+import { BehaviorSubject, throwError } from "rxjs";
+import { User } from "../interfaces/user.model";
 
 
 @Injectable({
@@ -95,7 +95,7 @@ export class LoginService {
       });
   }
 
-  private static hasToken() : boolean {
+  private static hasToken(): boolean {
     return !!localStorage.getItem("auth");
   }
 

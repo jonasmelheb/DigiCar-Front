@@ -17,10 +17,10 @@ export const ROUTES: Routes = [
   { path: 'carpooling', component: CarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/create', component: CreateCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/create/:id', component: CreateCarpoolingComponent, canActivate: [AuthGuard] },
-  { path: '', pathMatch: 'full', redirectTo: '/signin' },
   { path: 'carpooling/reserved-carpooling', component: MyReservedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'carpooling/my-carpooling', component: MyCreatedCarpoolingComponent, canActivate: [AuthGuard] },
   { path: 'car-for-carrental', component: CarForCarRentalComponent, canActivate: [AdminGuard] },
   { path: 'car-for-carrental/add', component: CreateCarForCarrentalComponent, canActivate: [AdminGuard] },
   { path: 'car-for-carrental/add/:id', component: CreateCarForCarrentalComponent, canActivate: [AdminGuard] },
+  { path: '', pathMatch: 'full', redirectTo: '/signin' },
 ]
