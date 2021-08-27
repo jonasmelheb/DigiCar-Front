@@ -1,5 +1,6 @@
 .detail {
   display: flex;
+  flex-flow: column;
 }
 
 .detail > p {
@@ -7,9 +8,9 @@
 }
 
 .detail > img {
-  margin-left: 10px;
-  max-width: 500px;
-  max-height: 500px;
+  margin-left: 5px;
+  max-width: 400px;
+  max-height: 400px;
 }
 
 .close-button{

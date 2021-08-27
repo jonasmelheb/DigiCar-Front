@@ -5,9 +5,19 @@
   <div class="detail-center">
     <h1 mat-dialog-title>Détail du véhicule</h1>
     <div class="detail">
-      <p>Id: </p>
-      <p><strong>{{ carForCarRental.id }}</strong></p>
       <img class="fit-picture" src= "{{carForCarRental.image}}" alt="image du véhicule">
+      <p>Marque: </p>
+      <p><strong>{{ carForCarRental.mark }}</strong></p>
+      <p>Modèle: </p>
+      <p><strong>{{ carForCarRental.model }}</strong></p>
+      <p>Nombre de place: </p>
+      <p><strong>{{ carForCarRental.placeNumber }}</strong></p>
+      <p>Immatriculation: </p>
+      <p><strong>{{ carForCarRental.registration }}</strong></p>
+      <p>Status: </p>
+      <p><strong>{{ carForCarRental.status }}</strong></p>
+      <p>category: </p>
+      <p><strong>{{ carForCarRental.category }}</strong></p>
     </div>
   </div>
   <button mat-button color="primary" (click)="editCarForCarRental(carForCarRental.id)" [disabled]="disable">Modifier</button>
