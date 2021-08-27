@@ -2,12 +2,13 @@
   <div>
     <h1>Liste des locations de véhicule</h1>
   </div>
-  <div>
-    <button id="return-btn" routerLink="/carpooling" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">
-      <mat-icon>home</mat-icon>
-      Retour à l'accueil</button>
+  <div class="btn-toolbar">
+    <button id="return-btn" routerLink="/carpooling" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised mr-1" >
+      <mat-icon>home</mat-icon> Retour à l'accueil</button>
+      <button id="reserve-btn" routerLink="/car-rental/reserve" mat-raised-button color="primary" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised ">
+        <mat-icon mat-icon class="mir-1" >time_to_leave</mat-icon>Nouvelle réservation</button>
   </div>
-<mat-form-field appearance="standard">
+  <mat-form-field appearance="standard">
   <mat-label>Filtrer</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. PEUGEOT - 206" #input>
 </mat-form-field>
@@ -40,6 +41,6 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" routerLink='/carrental/{{row.id}}'></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" routerLink='/car-rental/{{row.id}}'></tr>
   </table>
 </div>

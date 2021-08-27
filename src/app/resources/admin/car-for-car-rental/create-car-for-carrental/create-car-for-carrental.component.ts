@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarForCarRental } from 'src/app/common/interfaces/carForCarRental.model';
 import { Category } from 'src/app/common/interfaces/category.model';
@@ -52,8 +52,8 @@ export class CreateCarForCarrentalComponent implements OnInit {
     this.carForCarRentalForm = this.formBuilder.group({
       mark: ['', [Validators.required, Validators.minLength(3)]],
       model: ['', Validators.required],
-      placeNumber: ['', [Validators.required, Validators.max(7)]],
-      registration: ['', Validators.required],
+      placeNumber: ['', [Validators.required, Validators.max(7), Validators.min(1)]],
+      registration: ['', [Validators.required,this.validateRegistration]],
       image: ['', [Validators.required, Validators.minLength(6)]],
       status: ['', Validators.required],
       category: ['', Validators.required],
@@ -95,4 +95,13 @@ export class CreateCarForCarrentalComponent implements OnInit {
     }
   }
 
+  validateRegistration(formControl: FormControl): ValidationErrors|null{
+    const validationOldRegistration = new RegExp("^[0-9]{1,4}[A-Z]{1,4}[0-9]{1,2}$").test(formControl.value);
+    const validationNewRegistration = new RegExp("^[A-Z]{1,2}[0-9]{1,3}[A-Z]{1,2}$").test(formControl.value);
+    if(validationOldRegistration || validationNewRegistration){
+      return null;
+    } else {
+      return {registration:"Immatriculation invalide"}
+    }
+  }
 }

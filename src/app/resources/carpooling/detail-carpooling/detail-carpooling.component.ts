@@ -38,7 +38,7 @@ export class DetailCarpoolingComponent implements OnInit {
   private refresh() {
     this.service.getCarpoolingById(this.data.id).subscribe(
       carpooling => {
-        this.carpooling = carpooling
+        this.carpooling = carpooling;
         this.loginService.getUserAuth()?.subscribe(
           user => {
             if (user.username === carpooling.organize.username) {
