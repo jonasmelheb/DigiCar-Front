@@ -19,7 +19,7 @@
       <p>
         <mat-form-field>
           <mat-label>Sélectionner la voiture</mat-label>
-          <mat-select formControlName="carUsed">
+          <mat-select formControlName="usedCar">
             <mat-option *ngFor="let car of carForCarRental" [value]="car.id">
               {{ car.mark }} - {{ car.model }}
             </mat-option>

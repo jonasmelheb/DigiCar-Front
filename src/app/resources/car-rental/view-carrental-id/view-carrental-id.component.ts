@@ -41,19 +41,13 @@ export class ViewCarrentalIdComponent implements OnInit {
   }
 
   updateCarrental(id: number){
-    console.log("modifier");
-    this.service.updateById(1).subscribe(
-      () => {
-
-        this.router.navigate(['/car-rental'])
-      },
-      error => this.msgError = error
-    )
+    this.router.navigateByUrl('/car-rental/reserve/' + id)
 
   }
 
+
+
   deleteCarrental(id: number){
-    console.log("supprimer");
     this.service.deleteById(id).subscribe(
       () => {
 

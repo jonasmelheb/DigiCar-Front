@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { CarrentalService } from './../../../common/services/carrental.service';
 import { CarRentalRequest } from './../../../common/interfaces/carRentalRequest.model';
 import { CarForCarRentalService } from './../../../common/services/car-for-car-rental.service';
@@ -15,16 +16,19 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class CreateCarrentalComponent implements OnInit {
 
   carRentalForm!: FormGroup;
-  carRental!: CarRentalRequest
+  carRental!: CarRentalRequest;
   carForCarRental!:CarForCarRental[];
   message!: string;
   carId!: number;
+  id!: number;
+  isAddMode?: boolean;
 
   constructor(
     private service: CarrentalService,
     private formBuilder: FormBuilder,
     private router: Router,
     private serviceCarForCarRental: CarForCarRentalService,
+    private route: ActivatedRoute
   ) { }
 
   get form() {
@@ -36,18 +40,32 @@ export class CreateCarrentalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.isAddMode = !this.id;
+
     this.carRentalForm = this.formBuilder.group({
       dateDepart: ['', Validators.required],
       dateArrivee: ['', Validators.required],
-      carUsed: ['', Validators.required]
+      usedCar: ['', Validators.required]
     })
+
+    if (!this.isAddMode) {
+      this.service.getById(this.id).subscribe(
+        carrental => this.form.patchValue(carrental)
+      )
+    }
 
     this.viewListCarForCarRental()
   }
 
   onSubmit() {
-    this.createCarRental();
-    console.log(this.carRentalForm.value);
+
+    if (this.isAddMode) {
+      this.createCarRental()
+    }
+    else {
+      this.editCarrental()
+    }
 
   }
 
@@ -59,12 +77,14 @@ export class CreateCarrentalComponent implements OnInit {
    )
   }
 
+
+
   createCarRental() {
     this.carRental = {
       dateArrivee: this.carRentalForm.controls.dateArrivee.value,
       dateDepart: this.carRentalForm.controls.dateDepart.value,
     }
-    this.carId = this.carRentalForm.controls.carUsed.value
+    this.carId = this.carRentalForm.controls.usedCar.value
     console.log(this.carId);
 
     this.service.create(this.carRental, this.carId).subscribe(
@@ -75,4 +95,20 @@ export class CreateCarrentalComponent implements OnInit {
           });
       })
   }
+
+  editCarrental() {
+    let carRentalUpdate = {
+      dateDepart: this.carRentalForm.controls.dateDepart.value,
+      dateArrivee: this.carRentalForm.controls.dateArrivee.value
+    }
+
+    this.service.updateById(this.id, carRentalUpdate).subscribe(carRental => {
+      this.router.navigate(['/car-rental'])
+        .catch(error => {
+          console.log('/connexion url no longer available. Check routing file.');
+        });
+    })
+
+  }
+
 }

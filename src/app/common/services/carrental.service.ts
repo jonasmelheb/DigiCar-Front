@@ -32,9 +32,9 @@ export class CarrentalService {
      });
   }
 
-  updateById(id:number) {
+  updateById(id:number, carrental:CarRentalRequest) {
      const headers = this.headerHelper.getHeaders();
-     return this.httpClient.put<Carrental>(environment.backendUrl + '/car-rental/'+id, {
+     return this.httpClient.put<Carrental>(environment.backendUrl + '/car-rental/' + id, carrental, {
        headers
      });
   }
