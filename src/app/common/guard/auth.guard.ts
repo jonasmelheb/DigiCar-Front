@@ -9,14 +9,13 @@ import {CookieService} from "ngx-cookie-service";
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private cookieService: CookieService,
     private router: Router
   ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.cookieService.get('auth')) {
+    if (localStorage.getItem('auth')) {
       // logged in so return true
       return true;
     }

@@ -23,11 +23,9 @@ export class AdminGuard implements CanActivate {
     this.loginService.getUserAuth()?.subscribe(
       user => {
         user.roles.map(role => this.isAdmin = role.name === ERole.ROLE_ADMIN)
-        console.log(this.isAdmin, "yes")
       }
     )
     if (this.isAdmin) {
-      console.log(this.isAdmin, "no")
       return true
     }
 
