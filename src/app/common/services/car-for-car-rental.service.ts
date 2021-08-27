@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HeaderHelper } from '../helpers/header.helper';
-import { CarForCarRental } from '../interfaces/carForCarRental.model';
+import { Car } from '../interfaces/car.model';
 import { CarForCarRentalDetails } from '../interfaces/carForCarRentalDetails.model';
 
 @Injectable({
@@ -15,16 +15,16 @@ export class CarForCarRentalService {
     private headerHelper: HeaderHelper
   ) { }
 
-  create(carForCarRental: CarForCarRental) {
+  create(carForCarRental: Car) {
     const headers = this.headerHelper.getHeaders();
-    return this.httpClient.post<CarForCarRental>(environment.backendUrl + '/car/add-car/admin', carForCarRental, {
+    return this.httpClient.post<Car>(environment.backendUrl + '/car/add-car/admin', carForCarRental, {
       headers
     })
   }
 
   getCarForCarRental() {
     const headers = this.headerHelper.getHeaders();
-    return this.httpClient.get<CarForCarRental[]>(environment.backendUrl + '/car/cars-for-carrental', {
+    return this.httpClient.get<Car[]>(environment.backendUrl + '/car/cars-for-carrental', {
       headers
     });
   }
@@ -43,9 +43,9 @@ export class CarForCarRentalService {
     })
   }
 
-  updateCarForCarRental(id: number, carForCarRental: CarForCarRental) {
+  updateCarForCarRental(id: number, carForCarRental: Car) {
     const headers = this.headerHelper.getHeaders();
-    return this.httpClient.put<CarForCarRental>(environment.backendUrl + `/car/update/${id}`, carForCarRental, {
+    return this.httpClient.put<Car>(environment.backendUrl + `/car/update/${id}`, carForCarRental, {
       headers
     })
   }

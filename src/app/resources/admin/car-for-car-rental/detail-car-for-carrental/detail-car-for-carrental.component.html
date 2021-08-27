@@ -7,6 +7,7 @@
     <div class="detail">
       <p>Id: </p>
       <p><strong>{{ carForCarRental.id }}</strong></p>
+      <img class="fit-picture" src= "{{carForCarRental.image}}" alt="image du véhicule">
     </div>
   </div>
   <button mat-button color="primary" (click)="editCarForCarRental(carForCarRental.id)" [disabled]="disable">Modifier</button>
