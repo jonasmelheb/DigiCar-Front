@@ -1,3 +1,4 @@
+
 import { CarrentalService } from './../../common/services/carrental.service';
 import { Carrental } from './../../common/interfaces/carrental.model';
 import { MatSort } from '@angular/material/sort';
@@ -30,27 +31,27 @@ export class CarRentalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // if(this.loginservice.isAdmin) {
+    // if(this.loginService.isAdmin) {
     //   this.viewListCarRental()
     // } else {
-    //   this.viewListCarRentalReserved()
+    // this.viewListCarRentalReserved()
     // }
     this.viewListCarRental()
   }
 
-  viewListCarRental() {
+viewListCarRental() {
     this.service.getAllCarRentals().subscribe(
       carRentals => this.dataSource.data = carRentals,
       error => this.message = error
     )
   }
 
- /*  viewListCarRentalReserved() {
-    this.service.getCarRentalWhereCollaborateurIsReserve().subscribe(
-             reservedCarRental => this.dataSource.data = reservedCarRental,
-        error => this.message = error
-      );
-    } */
+// viewListCarRentalReserved() {
+//     this.service.getCarRentalWhereCollaborateurIsReserve().subscribe(
+//              reservedCarRental => this.dataSource.data = reservedCarRental,
+//         error => this.message = error
+//       );
+//     }
 
 
   applyFilter(event: Event) {

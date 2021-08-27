@@ -8,29 +8,37 @@
         <mat-form-field appearance="standard">
           <mat-label>Date et heure de départ: </mat-label>
           <input type="datetime-local" matInput formControlName="dateDepart">
+          <mat-error *ngIf="formControl.dateDepart.hasError('required')">
+            Le date est <strong>requise</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.dateDepart.errors?.dates !== null">
+            La date ne doit pas être antérieure à la date d'aujourd'hui
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
-        <mat-form-field>
+        <mat-form-field appearance="standard">
           <mat-label>Date et heure de retour: </mat-label>
           <input type="datetime-local" matInput formControlName="dateArrivee">
+          <mat-error *ngIf="formControl.dateArrivee.hasError('required')">
+            Le date est <strong>requise</strong>
+          </mat-error>
         </mat-form-field>
-      </p>
+        <mat-error *ngIf="form.errors?.dates !== null && form.dirty">
+          La date de retour ne doit pas être antérieure à la date d'arrivée
+        </mat-error>
       <p>
         <mat-form-field>
           <mat-label>Sélectionner la voiture</mat-label>
-          <mat-select formControlName="carUsed">
+          <mat-select formControlName="usedCar">
             <mat-option *ngFor="let car of carForCarRental" [value]="car.id">
               {{ car.mark }} - {{ car.model }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </p>
-      <p>
-        <mat-checkbox [disabled]="true">Chauffeur</mat-checkbox>
-      </p>
       <div class="button">
-        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">Créer</button>
+        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised" [disabled]="form.invalid">Créer</button>
       </div>
     </form>
   </mat-card-content>

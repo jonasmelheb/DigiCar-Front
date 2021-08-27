@@ -4,7 +4,7 @@ import { CarForCarRentalService } from './../../../common/services/car-for-car-r
 import { CarForCarRental } from './../../../common/interfaces/carForCarRental.model';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
 
 
 @Component({
@@ -37,10 +37,10 @@ export class CreateCarrentalComponent implements OnInit {
 
   ngOnInit(): void {
     this.carRentalForm = this.formBuilder.group({
-      dateDepart: ['', Validators.required],
+      dateDepart: ['', [Validators.required, this.dateLessThanNow]],
       dateArrivee: ['', Validators.required],
-      carUsed: ['', Validators.required]
-    })
+      usedCar: ['', Validators.required]
+    }, {validator: this.dateLessThan('dateDepart', 'dateArrivee')})
 
     this.viewListCarForCarRental()
   }
@@ -59,20 +59,45 @@ export class CreateCarrentalComponent implements OnInit {
    )
   }
 
+  dateLessThan(dateDepart: string, dateArrivee: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+      let f = group.controls.dateDepart;
+      let t = group.controls.dateArrivee;
+      if (f.value > t.value) {
+        return {
+          dates: "La date de retour ne doit pas être antérieure à la date d'arrivée"
+        };
+      }
+      return {};
+    }
+  }
+
+  dateLessThanNow(control: FormControl): ValidationErrors | null{
+    let f = control.value;
+    if (f < new Date().toISOString()) {
+      return {
+        dates: "La date ne doit pas être antérieure à la date d'aujourd'hui"
+      };
+    }
+    return null;
+  }
+
   createCarRental() {
     this.carRental = {
       dateArrivee: this.carRentalForm.controls.dateArrivee.value,
       dateDepart: this.carRentalForm.controls.dateDepart.value,
     }
-    this.carId = this.carRentalForm.controls.carUsed.value
+    this.carId = this.carRentalForm.controls.usedCar.value
     console.log(this.carId);
 
     this.service.create(this.carRental, this.carId).subscribe(
       carRental => {
-        this.router.navigate(['/car-for-carrental'])
+        this.router.navigate(['/car-rental'])
           .catch(error => {
             console.log('/connexion url no longer available. Check routing file.');
           });
       })
+
+
   }
 }
