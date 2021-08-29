@@ -1,0 +1,40 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
+
+h1,h3,p,h2{
+  text-align: center;
+
+}
+
+h1{
+  color: #2b3db6;
+}
+
+h3{
+  color: #2b3db6;
+}
+
+.mat-raised-button{
+  display: table-cell;
+  width: 200px;
+  margin: 10px;
+}
+
+.imgCar{
+width: 300px;
+display: block;
+margin: 0 auto;
+}
+
+@media screen and (max-width: 640px) {
+  .buttonCarRental {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
