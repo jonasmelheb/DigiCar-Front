@@ -1,11 +1,11 @@
 import { ActivatedRoute } from '@angular/router';
-import { CarrentalService } from './../../../common/services/carrental.service';
-import { CarRentalRequest } from './../../../common/interfaces/carRentalRequest.model';
-import { CarForCarRentalService } from './../../../common/services/car-for-car-rental.service';
-import { CarForCarRental } from './../../../common/interfaces/carForCarRental.model';
+import { CarrentalService } from '../../../common/services/carrental.service';
+import { CarRentalRequest } from '../../../common/interfaces/carRentalRequest.model';
+import { CarForCarRentalService } from '../../../common/services/car-for-car-rental.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
+import {CarForCarRentalDetails} from "../../../common/interfaces/carForCarRentalDetails.model";
 
 
 @Component({
@@ -17,7 +17,7 @@ export class CreateCarrentalComponent implements OnInit {
 
   carRentalForm!: FormGroup;
   carRental!: CarRentalRequest;
-  carForCarRental!:CarForCarRental[];
+  carForCarRental!:CarForCarRentalDetails[];
   message!: string;
   carId!: number;
   id!: number;

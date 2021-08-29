@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { CarForCarRental } from 'src/app/common/interfaces/carForCarRental.model';
+import { Car } from 'src/app/common/interfaces/car.model';
 import { CarForCarRentalService } from 'src/app/common/services/car-for-car-rental.service';
 import { DetailCarForCarrentalComponent } from './detail-car-for-carrental/detail-car-for-carrental.component';
 
@@ -17,7 +17,7 @@ export class CarForCarRentalComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  dataSource = new MatTableDataSource<CarForCarRental>();
+  dataSource = new MatTableDataSource<Car>();
   displayedColumns: string[] = [ 'mark', 'model', 'placeNumber' , 'registration' , 'status' , 'category' , 'actions'];
   message!: string;
 

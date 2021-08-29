@@ -1,0 +1,39 @@
+.detail {
+  display: flex;
+  flex-flow: column;
+}
+
+.detail > p {
+  margin-left: 5px;
+}
+
+.detail > img {
+  margin-left: 5px;
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.close-button{
+  float: right;
+  top:-20px;
+  right:-20px;
+}
+
+.close-icon {
+  transition: 1s ease-in-out;
+}
+
+.close-icon:hover {
+  transform: rotate(180deg);
+}
+.alert {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #04AA6D;
+  color: white;
+  border-radius: 5px;
+}
+
+button {
+  margin-right: 8px;
+}

@@ -17,7 +17,7 @@ export class DetailCarForCarrentalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DetailCarForCarrentalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {id: number},
+    @Inject(MAT_DIALOG_DATA) public data: {id: number, mark: string, model: string, registration: string, image: string},
     private service: CarForCarRentalService,
     private router: Router,
   ) { }

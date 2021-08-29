@@ -1,13 +1,13 @@
 <mat-card>
   <div>
-    <button id="return-btn" routerLink="/car-for-carrental" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">
+    <button id="return-btn" routerLink="/car" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised">
       <mat-icon>home</mat-icon>
       Retour à l'accueil</button>
   </div>
-  <mat-card-title *ngIf="isAddMode">Ajouter un véhicule de service</mat-card-title>
-  <mat-card-title *ngIf="!isAddMode">Modifier un véhicule de service</mat-card-title>
+  <mat-card-title *ngIf="isAddMode">Ajouter un véhicule </mat-card-title>
+  <mat-card-title *ngIf="!isAddMode">Modifier un véhicule </mat-card-title>
   <mat-card-content>
-    <form [formGroup]="carForCarRentalForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field>
           <mat-label>Marque : </mat-label>
@@ -70,15 +70,6 @@
       </p>
       <p>
         <mat-form-field appearance="fill">
-          <mat-label>Status</mat-label>
-          <mat-select formControlName="status">
-            <mat-option value="en service">En service</mat-option>
-            <mat-option value="hors service">Hors service</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill">
           <mat-label>Categorie</mat-label>
           <mat-select formControlName="category">
             <mat-option *ngFor="let cat of category" [value]="cat.name">
@@ -96,4 +87,3 @@
     </form>
   </mat-card-content>
 </mat-card>
-
