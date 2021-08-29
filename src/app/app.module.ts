@@ -1,3 +1,5 @@
+import { CreateCarrentalComponent } from './resources/car-rental/create-carrental/create-carrental.component';
+import { CarRentalComponent } from './resources/car-rental/car-rental.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -24,6 +26,7 @@ import { CarForCarRentalComponent } from './resources/admin/car-for-car-rental/c
 import { DetailCarForCarrentalComponent } from './resources/admin/car-for-car-rental/detail-car-for-carrental/detail-car-for-carrental.component';
 import { CreateCarForCarrentalComponent } from './resources/admin/car-for-car-rental/create-car-for-carrental/create-car-for-carrental.component';
 import { CreateCarForCarpoolingComponent } from './resources/carpooling/create-car-for-carpooling/create-car-for-carpooling.component';
+import { ViewCarrentalIdComponent } from './resources/car-rental/view-carrental-id/view-carrental-id.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -34,8 +37,11 @@ registerLocaleData(localeFr, 'fr');
     CarpoolingComponent,
     CreateCarpoolingComponent,
     DetailCarpoolingComponent,
+    ViewCarrentalIdComponent,
     NavbarComponent,
     CarForCarRentalComponent,
+    CarRentalComponent,
+    CreateCarrentalComponent,
     DetailCarForCarrentalComponent,
     MyReservedCarpoolingComponent,
     MyCreatedCarpoolingComponent,

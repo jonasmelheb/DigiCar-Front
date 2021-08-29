@@ -1,0 +1,52 @@
+<mat-card>
+  <p>
+  <mat-card-title *ngIf="isAddMode">Faire une nouvelle demande de location de voiture</mat-card-title>
+  <mat-card-title *ngIf="!isAddMode">Modifier ma location de voiture</mat-card-title>
+  </p>
+  <mat-card-content>
+
+    <form [formGroup]="carRentalForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Date et heure de départ: </mat-label>
+          <input type="datetime-local" matInput formControlName="dateDepart">
+          <mat-error *ngIf="formControl.dateDepart.hasError('required')">
+            Le date est <strong>requise</strong>
+          </mat-error>
+          <mat-error *ngIf="formControl.dateDepart.errors?.dates !== null">
+            La date ne doit pas être antérieure à la date d'aujourd'hui
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="standard">
+          <mat-label>Date et heure de retour: </mat-label>
+          <input type="datetime-local" matInput formControlName="dateArrivee">
+          <mat-error *ngIf="formControl.dateArrivee.hasError('required')">
+            Le date est <strong>requise</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-error *ngIf="form.errors?.dates !== null && form.dirty">
+          La date de retour ne doit pas être antérieure à la date d'arrivée
+        </mat-error>
+      <p>
+        <mat-form-field>
+          <mat-label>Sélectionner la voiture</mat-label>
+          <mat-select formControlName="usedCar">
+            <mat-option *ngFor="let car of carForCarRental" [value]="car.id">
+              {{ car.mark }} - {{ car.model }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <div class="button" *ngIf="isAddMode">
+        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised"
+          [disabled]="form.invalid">Créer</button>
+      </div>
+      <div class="button" *ngIf="!isAddMode">
+        <button type="submit" mat-button class="mat-focus-indicator mat-raised-button mat-button-base mat-raised"
+          [disabled]="form.invalid">Modifier</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

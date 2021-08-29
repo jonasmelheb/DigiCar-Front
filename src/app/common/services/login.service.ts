@@ -1,14 +1,13 @@
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {CookieService} from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { SigninRequest } from '../interfaces/signinRequest.model';
 import { SigninResponse } from '../interfaces/signinResponse.model';
 import { SignupRequest } from '../interfaces/signupRequest.model';
-import {catchError, tap} from "rxjs/operators";
-import {BehaviorSubject, throwError} from "rxjs";
-import {User} from "../interfaces/user.model";
+import { catchError, tap } from "rxjs/operators";
+import { BehaviorSubject, throwError } from "rxjs";
+import { User } from "../interfaces/user.model";
 
 
 @Injectable({
@@ -16,11 +15,10 @@ import {User} from "../interfaces/user.model";
 })
 export class LoginService {
 
-  loginStatus = new BehaviorSubject<boolean>(this.hasToken());
+  loginStatus = new BehaviorSubject<boolean>(LoginService.hasToken());
 
   constructor(
     private httpClient: HttpClient,
-    private cookieService: CookieService,
     private router: Router,
   ) { }
 
@@ -36,7 +34,8 @@ export class LoginService {
     return this.httpClient.post<SigninResponse>(environment.backendUrl + '/auth/signin', request)
       .pipe(
         tap((resp: SigninResponse) => {
-          this.cookieService.set("auth",resp.accessToken);
+          window.localStorage.setItem("auth", resp.accessToken)
+          window.localStorage.setItem("auth-user", JSON.stringify(resp))
           this.loginStatus.next(true);
         }),
         catchError(LoginService.handleError)
@@ -57,7 +56,8 @@ export class LoginService {
     // return an observable with a user-facing error message
     return throwError(
       'Le pseudo ou le mot de passe sont incorrect.');
-  };
+  }
+
   private static handleErrorSignUp(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -72,36 +72,35 @@ export class LoginService {
     // return an observable with a user-facing error message
     return throwError(
       'Le pseudo ou l\'email existe déjà.');
-  };
+  }
 
   public isLoggedIn() {
     return this.loginStatus.asObservable();
   }
 
-  // private getLogin(): SigninResponse | null {
-  //   const cookie = this.cookieService.get('auth');
-  //   return cookie && cookie.length !== 0 ? JSON.parse(cookie) as SigninResponse : null;
-  // }
-
   getToken(): string | null {
-    const token = this.cookieService.get('auth');
-    return this.hasToken() ? token : null;
+    const token = localStorage.getItem('auth');
+    return LoginService.hasToken() ? token : null;
+  }
+
+  getUser() {
+    return JSON.parse(localStorage.getItem('auth-user')!);
   }
 
   logout() {
-    this.cookieService.delete('auth');
+    window.localStorage.clear();
     this.router.navigate(['/signin'])
       .catch(error => {
         console.log('/connexion url no longer available. Check routing file.');
       });
   }
 
-  private hasToken() : boolean {
-    return this.cookieService.check('auth');
+  private static hasToken(): boolean {
+    return !!localStorage.getItem("auth");
   }
 
   getUserAuth() {
-    if (this.hasToken()) {
+    if (LoginService.hasToken()) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
       return this.httpClient.get<User>(environment.backendUrl + '/user/user-auth', {
         headers
