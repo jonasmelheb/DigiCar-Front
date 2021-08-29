@@ -73,7 +73,11 @@ export class CreateCarrentalComponent implements OnInit {
     this.serviceCarForCarRental.getCarForCarRental().subscribe(
       carForCarRental => this.carForCarRental = carForCarRental
       ,
-      error => this.message = error
+      error => {
+        this.message = error.error.message
+        console.log("pas de voitures");
+
+      }
    )
   }
 

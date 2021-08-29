@@ -3,16 +3,14 @@
   <mat-card>
     <h1>Réservation de la {{carrental.usedCar.model}}</h1>
 <div>
-  <h3>Véhicule</h3>
-  <!-- nom nb place category & image -->
-  <img [src]="carrental.usedCar.image"  alt="image voiture">
-  <p>Marque</p>
+  <img class="imgCar" [src]="carrental.usedCar.image"  alt="image voiture">
+  <h3>Marque</h3>
   <p>{{carrental.usedCar.mark}}</p>
-  <p>Model</p>
+  <h3>Modèle</h3>
   <p>{{carrental.usedCar.model}}</p>
-  <p>Categorie</p>
+  <h3>Catégorie</h3>
   <p>{{carrental.usedCar.category}}</p>
-  <p>Nombre de places</p>
+  <h3>Nombre de places</h3>
   <p>{{carrental.usedCar.placeNumber}}</p>
 </div>
 <div>
@@ -24,9 +22,10 @@
   <p>{{carrental.dateArrivee | date: 'EEEE dd/MM/yy à HH:mm' : '' : 'fr-FR' }}</p>
 </div>
 
-<button mat-raised-button color="primary" (click)="updateCarrental(carrental.id)">Modifier</button>
-<button mat-raised-button color="warn" (click)="deleteCarrental(carrental.id)">Supprimer</button>
-<button mat-raised-button color="accent" routerLink="/car-rental">Retour</button>
+<button mat-raised-button class="buttonCarRental" color="primary" (click)="updateCarrental(carrental.id)">Modifier</button>
+<button mat-raised-button class="buttonCarRental" color="warn"
+  (click)="deleteCarrental(carrental.id)">Supprimer</button>
+<button mat-raised-button class="buttonCarRental" color="accent" routerLink="/car-rental">Retour</button>
 </mat-card>
  </ng-container>
  <ng-template #elseBlock>
