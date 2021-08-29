@@ -1,13 +1,13 @@
 
-import { CarrentalService } from './../../common/services/carrental.service';
-import { Carrental } from './../../common/interfaces/carrental.model';
+import { CarrentalService } from '../../common/services/carrental.service';
+import { Carrental } from '../../common/interfaces/carrental.model';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { CarForCarRental } from 'src/app/common/interfaces/carForCarRental.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { User } from 'src/app/common/interfaces/user.model';
+import {CarForCarRentalDetails} from "../../common/interfaces/carForCarRentalDetails.model";
 
 @Component({
   selector: 'app-car-rental',
@@ -18,7 +18,7 @@ export class CarRentalComponent implements OnInit {
   @ViewChild(MatPaginator) paginator?: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   carRentals?: Carrental[] = [];
-  carForCarRental?: CarForCarRental[] = [];
+  carForCarRental?: CarForCarRentalDetails[] = [];
   user?:User;
 
   dataSource = new MatTableDataSource<Carrental>();

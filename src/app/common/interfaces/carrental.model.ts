@@ -1,6 +1,6 @@
 import { Driver } from './driver.model';
-import { CarForCarRental } from './carForCarRental.model';
 import { User } from './user.model';
+import {CarForCarRentalDetails} from "./carForCarRentalDetails.model";
 
 export interface Carrental {
   id: number;
@@ -9,5 +9,5 @@ export interface Carrental {
   isDriver: boolean;
   driver: Driver;
   collaborateur: User;
-  usedCar: CarForCarRental;
+  usedCar: CarForCarRentalDetails;
 }
