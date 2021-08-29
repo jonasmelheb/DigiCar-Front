@@ -8,6 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { User } from 'src/app/common/interfaces/user.model';
 import {CarForCarRentalDetails} from "../../common/interfaces/carForCarRentalDetails.model";
+import {ERole} from "../../common/interfaces/ERole";
+import {LoginService} from "../../common/services/login.service";
 
 @Component({
   selector: 'app-car-rental',
@@ -27,16 +29,22 @@ export class CarRentalComponent implements OnInit {
 
   constructor(
     private service: CarrentalService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
-    // if(this.loginService.isAdmin) {
-    //   this.viewListCarRental()
-    // } else {
-    // this.viewListCarRentalReserved()
-    // }
-    this.viewListCarRental()
+    this.loginService.getUserAuth()?.subscribe(
+      user => {
+        this.user = user;
+        user.roles.map(role => {
+          if (role.name === ERole.ROLE_ADMIN) {
+            this.viewListCarRental();
+          } else {
+            this.viewListCarRentalReserved()
+          }
+        })
+      })
   }
 
 viewListCarRental() {
@@ -46,12 +54,12 @@ viewListCarRental() {
     )
   }
 
-// viewListCarRentalReserved() {
-//     this.service.getCarRentalWhereCollaborateurIsReserve().subscribe(
-//              reservedCarRental => this.dataSource.data = reservedCarRental,
-//         error => this.message = error
-//       );
-//     }
+viewListCarRentalReserved() {
+    this.service.getCarRentalWhereCollaborateurIsReserve().subscribe(
+             reservedCarRental => this.dataSource.data = reservedCarRental,
+        error => this.message = error
+      );
+    }
 
 
   applyFilter(event: Event) {
