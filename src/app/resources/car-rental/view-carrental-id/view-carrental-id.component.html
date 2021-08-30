@@ -1,7 +1,7 @@
 <!-- {{carrental| json}} -->
 <ng-container *ngIf="carrental; else elseBlock">
   <mat-card>
-    <h1>Réservation de la {{carrental.usedCar.model}}</h1>
+    <h1>Réservation: {{ carrental.usedCar.mark }} - {{ carrental.usedCar.model }}</h1>
 <div>
   <img class="imgCar" [src]="carrental.usedCar.image"  alt="image voiture">
   <h3>Marque</h3>
