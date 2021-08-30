@@ -1,0 +1,22 @@
+footer{
+  position: absolute;
+  background-color: lightgray;
+  padding: 3%;
+  margin-top: 25px;
+  bottom: 0;
+  width: 100%;
+}
+
+div{
+  text-align: center;
+}
+
+p{
+  color: black;
+}
+
+img{
+  max-width: 50px;
+  max-height:50px;
+  margin:20px;
+}
